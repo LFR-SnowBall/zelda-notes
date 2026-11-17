@@ -101,6 +101,33 @@ namespace ZeldaNotesLauncher
             string serverPy = Path.Combine(baseDir, "server.py");
             if (!File.Exists(serverPy))
             {
+                // Bootstrapper: Si el usuario descargó solo el .exe suelto, auto-descargar el paquete oficial
+                try
+                {
+                    string zipUrl = "https://github.com/LFR-SnowBall/zelda-notes/releases/download/v1.0.0/ZeldaNotes-v1.0.0-windows.zip";
+                    string tempZip = Path.Combine(baseDir, "zelda-notes-install.zip");
+
+                    using (WebClient wc = new WebClient())
+                    {
+                        wc.Headers.Add("User-Agent", "ZeldaNotes-Launcher");
+                        wc.DownloadFile(zipUrl, tempZip);
+                    }
+
+                    ExtractZipSafely(tempZip, baseDir);
+                    if (File.Exists(tempZip)) File.Delete(tempZip);
+
+                    pythonExe = ResolvePythonPath(baseDir);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se encontró 'server.py' en la carpeta y ocurrió un error al intentar la descarga automática:\n" + ex.Message,
+                        "Zelda Notes — Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
+            if (!File.Exists(serverPy))
+            {
                 MessageBox.Show("No se encontró 'server.py' en: " + baseDir,
                     "Zelda Notes — Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -257,6 +284,30 @@ namespace ZeldaNotesLauncher
             }
             catch { }
             return "localhost";
+        }
+
+        private static void ExtractZipSafely(string zipPath, string targetDir)
+        {
+            using (ZipArchive archive = ZipFile.OpenRead(zipPath))
+            {
+                foreach (ZipArchiveEntry entry in archive.Entries)
+                {
+                    string fullPath = Path.Combine(targetDir, entry.FullName);
+                    if (string.IsNullOrEmpty(entry.Name))
+                    {
+                        if (!Directory.Exists(fullPath)) Directory.CreateDirectory(fullPath);
+                        continue;
+                    }
+
+                    string dir = Path.GetDirectoryName(fullPath);
+                    if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+
+                    if (entry.Name.Equals("ZeldaNotes.exe", StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    entry.ExtractToFile(fullPath, true);
+                }
+            }
         }
 
         private static void ExitApplication()
