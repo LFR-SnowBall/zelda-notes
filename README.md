@@ -16,7 +16,10 @@ Inspirado en el Purah Pad Sheikah y en el atlas interactivo cartográfico de **N
 
 ### Inicio Rápido (1 Clic)
 1. **Descargar o Clonar:**
-   - Descarga el `.zip` desde [Releases](https://github.com/tu-usuario/zelda-notes/releases) o clona el repositorio.
+   - Descarga el `.zip` desde [Releases](https://github.com/LFR-SnowBall/zelda-notes/releases) o clona el repositorio:
+     ```bash
+     git clone https://github.com/LFR-SnowBall/zelda-notes.git
+     ```
 2. **Ejecutar:**
    - **En Windows (Recomendado):** Haz doble clic en **`ZeldaNotes.exe`**. 
      - Se abrirá como una aplicación nativa de escritorio independiente (sin consola negra de fondo, con icono en la bandeja del sistema y aceleración por GPU).
