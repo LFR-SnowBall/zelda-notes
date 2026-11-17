@@ -1,0 +1,4 @@
+# Zelda Notes / Purah Pad Companion Engine
+# Requiere Python 3.10 o superior.
+# La arquitectura corre 100% con la libreria estandar de Python (ctypes, http.server, json, struct, etc.).
+# No requiere instalar paquetes externos obligatorios.

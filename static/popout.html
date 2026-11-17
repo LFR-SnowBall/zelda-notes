@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zelda Notes — Radar & Mapa Flotante en Vivo</title>
+  <link rel="stylesheet" href="/static/style.css?v=3.8.0">
+  <style>
+    /* Dedicated Popout Styles */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #04070d;
+      color: var(--text-main);
+      font-family: var(--font-main);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .popout-top-nav {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      background: rgba(8, 13, 22, 0.96);
+      border-bottom: 1px solid var(--border-neon);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+    .popout-brand-col {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .popout-logo-eye {
+      width: 24px;
+      height: 24px;
+      fill: var(--accent-cyan);
+      filter: drop-shadow(0 0 6px var(--accent-cyan));
+      flex-shrink: 0;
+    }
+
+    .popout-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .popout-app-tag {
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
+      color: var(--accent-cyan);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .popout-zone-select {
+      background: rgba(14, 22, 36, 0.95);
+      border: 1px solid var(--border-neon);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: var(--font-tech);
+      cursor: pointer;
+      outline: none;
+      letter-spacing: 0.5px;
+    }
+
+    .popout-zone-select:focus {
+      border-color: #00fff2;
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+    }
+
+    .popout-zone-select option {
+      background: #080d16;
+      color: #fff;
+    }
+
+    .popout-mode-group {
+      display: flex;
+      background: rgba(14, 22, 36, 0.85);
+      border: 1px solid var(--border-neon);
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .pop-mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      font-size: 0.8rem;
+      font-family: var(--font-tech);
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .pop-mode-btn.active {
+      background: rgba(0, 229, 255, 0.22);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.35);
+    }
+
+    .popout-tabs-bar {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      overflow-x: auto;
+      max-width: 320px;
+      padding-bottom: 2px;
+      flex-shrink: 0;
+    }
+
+    .popout-tele-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .pop-pill {
+      background: rgba(12, 18, 30, 0.85);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-family: var(--font-tech);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .pop-pill.coords {
+      color: var(--accent-gold);
+      border-color: rgba(255, 215, 0, 0.3);
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .pop-pill.age {
+      color: #00ffaa;
+      border-color: rgba(0, 255, 170, 0.4);
+      background: rgba(0, 255, 170, 0.08);
+      font-weight: 800;
+    }
+    .pop-pill.age.adult {
+      color: #00fff2;
+      border-color: rgba(0, 229, 255, 0.4);
+      background: rgba(0, 229, 255, 0.08);
+    }
+
+    .popout-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .pop-action-btn {
+      background: rgba(14, 22, 38, 0.9);
+      border: 1px solid var(--border-neon);
+      color: var(--accent-cyan);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .pop-action-btn:hover {
+      background: rgba(0, 229, 255, 0.25);
+      border-color: #00fff2;
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+    }
+
+    .pop-action-btn.locate-hero-btn {
+      background: rgba(255, 215, 0, 0.16);
+      border-color: #ffd700;
+      color: #ffd700;
+      font-weight: 800;
+    }
+    .pop-action-btn.locate-hero-btn:hover {
+      background: #ffd700;
+      color: #040810;
+      box-shadow: 0 0 16px rgba(255, 215, 0, 0.7);
+    }
+
+    .pop-floating-locate {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(8, 14, 24, 0.94);
+      border: 1px solid #ffd700;
+      color: #ffd700;
+      padding: 9px 18px;
+      border-radius: 30px;
+      font-family: var(--font-tech);
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.85), 0 0 16px rgba(255, 215, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 99;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(10px);
+    }
+    .pop-floating-locate:hover {
+      background: #ffd700;
+      color: #040810;
+      box-shadow: 0 0 22px rgba(255, 215, 0, 0.85);
+      transform: translateY(-2px);
+    }
+
+    .hero-beacon {
+      transition: left 0.12s linear, top 0.12s linear;
+    }
+
+    .beacon-hud-card {
+      margin-top: 8px;
+      background: rgba(4, 8, 14, 0.95);
+      border: 1px solid var(--accent-cyan);
+      padding: 5px 12px;
+      border-radius: 6px;
+      backdrop-filter: blur(6px);
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.85), 0 0 12px rgba(0, 229, 255, 0.3);
+      white-space: nowrap;
+      z-index: 5;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 3px !important;
+    }
+
+    .hero-title {
+      display: block !important;
+      font-size: 0.62rem !important;
+      letter-spacing: 1.5px !important;
+      color: var(--accent-cyan) !important;
+      font-weight: 700 !important;
+      line-height: 1.2 !important;
+      text-transform: uppercase !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .hero-zone {
+      display: block !important;
+      font-family: var(--font-display) !important;
+      font-size: 0.85rem !important;
+      color: #ffffff !important;
+      letter-spacing: 0.5px !important;
+      line-height: 1.25 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .pop-zoom-controls {
+      position: fixed;
+      top: 68px;
+      right: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: rgba(8, 14, 24, 0.94);
+      border: 1px solid var(--border-neon);
+      border-radius: 8px;
+      padding: 4px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 0 12px rgba(0, 229, 255, 0.25);
+      z-index: 90;
+      backdrop-filter: blur(8px);
+    }
+
+    .popout-dungeon-wrapper,
+    .popout-overworld-wrapper {
+      transform-origin: center center;
+      will-change: transform;
+      cursor: grab;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+    }
+
+    .popout-main-stage {
+      cursor: grab;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+    }
+
+    .popout-main-stage.is-panning,
+    .popout-dungeon-wrapper.is-panning,
+    .popout-overworld-wrapper.is-panning {
+      cursor: grabbing !important;
+    }
+
+    /* Prevent native drag of map images */
+    .popout-svg-img,
+    .popout-overworld-img,
+    #pop-dungeon-svg,
+    #pop-hyrule-img {
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+      pointer-events: none !important;
+    }
+
+    /* Popout Viewport Canvas Stage */
+    .popout-main-stage {
+      flex: 1 1 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+      overflow-x: auto;
+      background-image: 
+        radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.06) 0%, transparent 75%),
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 28px 28px, 28px 28px;
+      padding: 14px;
+    }
+
+    .popout-dungeon-wrapper,
+    .popout-overworld-wrapper {
+      position: relative;
+      display: inline-block;
+      line-height: 0;
+      max-width: 98%;
+      margin: 10px auto;
+      flex-shrink: 0;
+    }
+
+    .popout-plans-section {
+      width: 100%;
+      max-width: 1300px;
+      margin: 25px auto 35px auto;
+      flex-shrink: 0;
+    }
+
+    .popout-svg-img {
+      max-height: calc(100vh - 85px);
+      max-width: 96vw;
+      width: auto;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 0 18px rgba(0, 229, 255, 0.45));
+      user-select: none;
+    }
+
+    .popout-overworld-img {
+      max-height: calc(100vh - 85px);
+      max-width: 96vw;
+      width: auto;
+      height: auto;
+      display: block;
+      user-select: none;
+    }
+
+    /* Floating Item Tooltip */
+    .pop-item-tooltip {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(6, 11, 20, 0.97);
+      border: 1px solid var(--accent-cyan);
+      box-shadow: 0 0 24px rgba(0, 229, 255, 0.45);
+      padding: 14px 22px;
+      border-radius: 8px;
+      z-index: 999;
+      max-width: 500px;
+      backdrop-filter: blur(14px);
+      animation: popFade 0.25s ease;
+    }
+
+    @keyframes popFade {
+      from { opacity: 0; transform: translate(-50%, 10px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    .dungeon-item-pin.collected {
+      opacity: 0.75;
+    }
+    .dungeon-item-pin.collected .pin-icon {
+      border-color: #00ffaa !important;
+      box-shadow: 0 0 10px rgba(0, 255, 170, 0.5) !important;
+    }
+    .dungeon-item-pin.collected .pin-icon::after {
+      content: "✔";
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      font-size: 10px;
+      background: #00ffaa;
+      color: #03080c;
+      font-weight: 900;
+      border-radius: 50%;
+      width: 14px;
+      height: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation & Controls Bar -->
+  <header class="popout-top-nav">
+    <div class="popout-brand-col">
+      <svg class="popout-logo-eye" viewBox="0 0 24 24">
+        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+      </svg>
+      <div class="popout-title-wrap">
+        <span class="popout-app-tag">PURAH PAD // RADAR FLOTANTE</span>
+        <select id="pop-zone-select" class="popout-zone-select" onchange="changePopPlace(this.value)">
+          <option value="fuente">Fuente Zora</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Mode Selector -->
+    <div class="popout-mode-group">
+      <button class="pop-mode-btn active" id="pop-btn-dungeon" onclick="setPopMode('dungeon')">
+        <span>🏰</span> Mazmorra / Zona
+      </button>
+      <button class="pop-mode-btn" id="pop-btn-overworld" onclick="setPopMode('overworld')">
+        <span>🗺️</span> Reino de Hyrule
+      </button>
+    </div>
+
+    <!-- Floor Tabs -->
+    <div class="popout-tabs-bar" id="pop-floor-tabs">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Live Telemetry Badges -->
+    <div class="popout-tele-group">
+      <div class="pop-pill age" id="pop-age-pill" title="Época activa detectada en vivo">
+        <span>🧒</span>
+        <strong id="pop-age-text">LINK NIÑO</strong>
+      </div>
+      <div class="pop-pill" title="Skulltulas Conseguidas / Totales en esta zona">
+        <span>🕷️</span>
+        <strong id="pop-gs-count">0 / 0</strong>
+      </div>
+      <div class="pop-pill" title="Piezas de Corazón Conseguidas / Totales en esta zona">
+        <span>❤️</span>
+        <strong id="pop-hearts-count">0 / 0</strong>
+      </div>
+      <div class="pop-pill" title="Grandes Hadas y Secretos en esta zona">
+        <span>✨</span>
+        <strong id="pop-secrets-count">0 / 0</strong>
+      </div>
+      <div class="pop-pill coords" title="Coordenadas en vivo de Link">
+        <span>👑</span>
+        <strong id="pop-coords-text">[X: 0.0, Y: 0.0, Z: 0.0]</strong>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="popout-btn-group">
+      <button class="pop-action-btn" onclick="openLanPopoutModal()" title="Conectar celular o tablet por Wi-Fi">
+        <span>📱</span> Móvil
+      </button>
+      <button class="pop-action-btn refresh-btn" id="pop-refresh-btn" onclick="manualReloadPopout()" title="Recargar telemetría y mapas en vivo (R)">
+        <span class="refresh-icon">🔄</span> Recargar
+      </button>
+      <button class="pop-action-btn locate-hero-btn" onclick="locatePopHero()" title="Regresar inmediatamente al lugar donde se encuentra Link en el juego">
+        <span>👑</span> Regresar a Link
+      </button>
+      <button class="pop-action-btn" id="pop-pins-btn" onclick="togglePopPins()">
+        <span id="pop-pins-icon">🙈</span>
+        <span id="pop-pins-label">Ocultar Pines</span>
+      </button>
+      <button class="pop-action-btn" onclick="togglePopFullscreen()" title="Pantalla Completa (F)">
+        <span>⛶</span> Pantalla Completa
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Map Stage -->
+  <main class="popout-main-stage" id="popout-main-stage">
+    <!-- Floating Zoom Controls in Popout -->
+    <div class="pop-zoom-controls" id="pop-zoom-controls">
+      <button class="zoom-btn" onclick="zoomInPopMap()" title="Acercar plano (+ / Rueda arriba)">
+        <span>➕</span>
+      </button>
+      <button class="zoom-btn zoom-level-btn" onclick="resetZoomPopMap()" title="Restablecer tamaño (100%)">
+        <span id="pop-zoom-pct">100%</span>
+      </button>
+      <button class="zoom-btn" onclick="zoomOutPopMap()" title="Alejar plano (- / Rueda abajo)">
+        <span>➖</span>
+      </button>
+      <button class="zoom-btn reset-btn" onclick="resetZoomPopMap()" title="Restablecer encuadre original">
+        <span>🔄</span>
+      </button>
+    </div>
+
+    <!-- Dungeon Stage -->
+    <div class="popout-dungeon-wrapper" id="pop-dungeon-stage">
+      <img id="pop-dungeon-svg" src="" alt="Plano de Mazmorra" class="popout-svg-img" draggable="false">
+      <div id="pop-dungeon-items" class="dungeon-items-layer"></div>
+      
+      <!-- Live Link Beacon in Dungeon -->
+      <div id="pop-dungeon-beacon" class="hero-beacon">
+        <div class="beacon-pulse-core">
+          <div class="beacon-spotlight"></div>
+          <div class="beacon-wave-1"></div>
+          <div class="beacon-wave-2"></div>
+          <div class="beacon-center-eye">
+            <div class="sheikah-pupil"></div>
+          </div>
+        </div>
+        <div class="beacon-arrow">▼</div>
+        <div class="beacon-hud-card">
+          <span class="hero-title">👑 TÚ ESTÁS AQUÍ</span>
+          <strong id="pop-beacon-label" class="hero-zone">Fuente Zora</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overworld Stage -->
+    <div class="popout-overworld-wrapper" id="pop-overworld-stage" style="display: none;">
+      <img id="pop-hyrule-img" src="/static/hyrule.webp" alt="Mapa de Hyrule" class="popout-overworld-img" draggable="false">
+      <div id="pop-overworld-markers" class="map-markers-layer"></div>
+      <div id="pop-overworld-beacon" class="hero-beacon" style="left: 80.3%; top: 52.2%;">
+        <div class="beacon-pulse-core">
+          <div class="beacon-spotlight"></div>
+          <div class="beacon-wave-1"></div>
+          <div class="beacon-wave-2"></div>
+          <div class="beacon-center-eye">
+            <div class="sheikah-pupil"></div>
+          </div>
+        </div>
+        <div class="beacon-arrow">▼</div>
+        <div class="beacon-hud-card">
+          <span class="hero-title">👑 TÚ ESTÁS AQUÍ</span>
+          <strong id="pop-overworld-beacon-label" class="hero-zone">Fuente Zora</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section: Adentrarse en Planos de esta Región en Ventana Aparte -->
+    <section class="region-plans-section popout-plans-section" id="pop-region-plans-section">
+      <div class="region-plans-header">
+        <div class="plans-title-wrap">
+          <span class="plans-header-icon" id="pop-region-plans-icon">💧</span>
+          <div>
+            <h3 class="plans-header-title" id="pop-region-plans-title">PLANOS DE LA REGIÓN: REINO DE LOS ZORA</h3>
+            <span class="plans-header-sub">Selecciona un plano para adentrarte directamente en sus estancias</span>
+          </div>
+        </div>
+      </div>
+      <div class="region-plans-grid" id="pop-region-plans-grid">
+        <!-- Tarjetas de zonas y planos inyectadas dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Floating Return to Link Button -->
+    <button class="pop-floating-locate" onclick="locatePopHero()" title="Regresar inmediatamente al lugar donde se encuentra Link en el juego">
+      <span style="font-size: 1.05rem;">👑</span> Regresar a Link
+    </button>
+  </main>
+
+  <!-- Item Details Tooltip Card -->
+  <div class="pop-item-tooltip" id="pop-item-tooltip">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+      <div>
+        <strong id="tooltip-item-name" style="color: var(--accent-cyan); font-size: 1rem;"></strong>
+        <div id="tooltip-item-cat" style="font-size: 0.75rem; color: var(--accent-gold); text-transform: uppercase;"></div>
+      </div>
+      <button onclick="closeTooltip()" style="background:none; border:none; color: var(--text-muted); font-size: 1.1rem; cursor: pointer;">✕</button>
+    </div>
+    <div id="tooltip-item-status" style="margin-top: 6px; font-size: 0.8rem; font-family: var(--font-tech);"></div>
+    <div id="tooltip-item-hint" style="margin-top: 8px; font-size: 0.85rem; color: var(--text-main); line-height: 1.4;"></div>
+    <div style="margin-top: 12px; display: flex; justify-content: flex-end;">
+      <button id="tooltip-toggle-btn" class="pop-action-btn" onclick="toggleActiveItem()" style="font-size: 0.75rem; padding: 4px 10px;">
+        ✔ Marcar como Conseguido
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let dungeonDatabase = null;
+    let currentMapData = null;
+    let selectedPlaceId = "fuente";
+    let activeFloorId = "nino";
+    let currentMode = "dungeon";
+    let isPinsVisible = true; // SIEMPRE MUESTRA LOS PINES EN EL PLANO EN TRUE
+    let manualZoneOverride = false;
+    let serverCollectedIds = new Set();
+
+    function getCollectedItems() {
+      const result = new Set(serverCollectedIds);
+      try {
+        const local = JSON.parse(localStorage.getItem("zelda_notes_collected") || "[]");
+        local.forEach(id => result.add(id));
+      } catch (e) {}
+      try {
+        const uncollected = JSON.parse(localStorage.getItem("zelda_notes_uncollected") || "[]");
+        uncollected.forEach(id => result.delete(id));
+      } catch (e) {}
+      return result;
+    }
+
+    const REGION_ICONS = {
+      Zora: "💧",
+      Montaña: "🌋",
+      Bosques: "🌲",
+      Centro: "🌿",
+      Castillo: "🏰",
+      Lago: "⛵",
+      Kakariko: "🏘️",
+      Oeste: "🏜️"
+    };
+
+    const PLACE_ICONS = {
+      rio: "🌊",
+      dominio: "💧",
+      fuente: "🧊",
+      jabu: "🐋",
+      hielo: "❄️",
+      kokiri: "🏡",
+      deku: "🌳",
+      perdido: "🌲",
+      prado: "🏛️",
+      bosque: "🏰",
+      sendero: "🪨",
+      goron: "🌋",
+      dodongos: "🦎",
+      crater: "🔥",
+      fuego: "🗝️",
+      kakariko: "🏘️",
+      cementerio: "🪦",
+      pozo: "🕳️",
+      sombra: "👁️",
+      sombras: "👁️",
+      ciudadela: "🏰",
+      tiempo: "⏳",
+      castillo: "👑",
+      ganon: "⚔️",
+      llanura: "🌾",
+      lonlon: "🐎",
+      lago: "⛵",
+      agua: "🌊",
+      valle: "🌉",
+      fortaleza: "🏹",
+      desierto: "🏜️",
+      coloso: "🗿",
+      espiritu: "✨",
+      gerudo: "🎯"
+    };
+
+    const REGION_TITLES = {
+      Zora: "Región de los Zora",
+      Montaña: "Montaña de la Muerte & Goron",
+      Bosques: "Grandes Bosques Kokiri & Saria",
+      Centro: "Llanura de Hyrule & Lon Lon",
+      Castillo: "Castillo de Hyrule & Ciudadela",
+      Lago: "Lago Hylia & Cuenca Acuática",
+      Kakariko: "Pueblo Kakariko & Cementerio",
+      Oeste: "Tierras Gerudo & Gran Desierto"
+    };
+
+    function buildPopZoneCardHtml(p, isCurrentView = false) {
+      const collected = getCollectedItems();
+      const isHeroHere = (currentMapData && currentMapData.hero_pin && currentMapData.hero_pin.place_id === p.id);
+      const pIcon = PLACE_ICONS[p.id] || "🗺️";
+      const items = p.items || [];
+      const maps = p.maps || [];
+
+      const totGs = items.filter(it => it.cat === "gs").length;
+      const doneGs = items.filter(it => it.cat === "gs" && collected.has(it.id)).length;
+      const totHearts = items.filter(it => it.cat === "heart").length;
+      const doneHearts = items.filter(it => it.cat === "heart" && collected.has(it.id)).length;
+      const totSecrets = items.filter(it => it.cat === "fairy" || it.cat === "secret").length;
+      const doneSecrets = items.filter(it => (it.cat === "fairy" || it.cat === "secret") && collected.has(it.id)).length;
+
+      const totAll = totGs + totHearts + totSecrets;
+      const doneAll = doneGs + doneHearts + doneSecrets;
+      const pct = totAll > 0 ? Math.round((doneAll / totAll) * 100) : 100;
+      const isClean = totAll > 0 && doneAll === totAll;
+
+      const subType = maps.length > 1 ? `Mazmorra (${maps.length} Plantas)` : (maps.length === 1 ? 'Plano de Zona' : 'Zona de Tránsito');
+
+      let statusPill = "";
+      if (isHeroHere) {
+        statusPill = `<span class="kingdom-pill hero-here">👑 TÚ ESTÁS AQUÍ</span>`;
+      } else if (isCurrentView) {
+        statusPill = `<span class="kingdom-pill viewing-pill">📍 PLANO EN PANTALLA</span>`;
+      } else if (isClean) {
+        statusPill = `<span class="kingdom-pill clean">✔ LIMPIO</span>`;
+      } else if (totAll > 0) {
+        statusPill = `<span class="kingdom-pill">⏳ FALTAN ${totAll - doneAll}</span>`;
+      } else {
+        statusPill = `<span class="kingdom-pill">EXPLORADA</span>`;
+      }
+
+      let buttonHtml = "";
+      if (isCurrentView) {
+        buttonHtml = `
+          <button class="kingdom-enter-btn current-view-btn" disabled>
+            📍 Viendo Plano Actual
+          </button>
+        `;
+      } else {
+        buttonHtml = `
+          <button class="kingdom-enter-btn" onclick="drillDownToPlace('${p.id}')">
+            ${pIcon} Adentrarse en Planos de ${p.name} ➔
+          </button>
+        `;
+      }
+
+      return `
+        <div class="kingdom-card zone-card ${isCurrentView ? 'active current-view' : ''} ${isClean ? 'clean-card' : ''}" onclick="drillDownToPlace('${p.id}')">
+          <div class="kingdom-card-header">
+            <div class="kingdom-title-wrap">
+              <span class="kingdom-icon">${pIcon}</span>
+              <div>
+                <h4 class="kingdom-name">${p.name}</h4>
+                <span class="kingdom-places-tag">${subType}</span>
+              </div>
+            </div>
+            ${statusPill}
+          </div>
+
+          <div class="kingdom-prog-bar">
+            <div class="kingdom-prog-fill ${isClean ? 'clean' : ''}" style="width: ${pct}%;"></div>
+          </div>
+          <div class="kingdom-prog-label">
+            <span>Progreso: ${pct}%</span>
+            <span>${doneAll} / ${totAll} Conseguidos</span>
+          </div>
+
+          <div class="kingdom-stats-grid">
+            <div class="k-stat-col" title="Skulltulas Doradas">
+              <span class="k-lbl">🕷️ SKULLTULAS</span>
+              <strong class="k-val">${doneGs} / ${totGs}</strong>
+            </div>
+            <div class="k-stat-col" title="Piezas de Corazón">
+              <span class="k-lbl">❤️ CORAZONES</span>
+              <strong class="k-val">${doneHearts} / ${totHearts}</strong>
+            </div>
+            <div class="k-stat-col" title="Grandes Hadas y Secretos">
+              <span class="k-lbl">✨ SECRETOS</span>
+              <strong class="k-val">${doneSecrets} / ${totSecrets || 1}</strong>
+            </div>
+          </div>
+
+          ${buttonHtml}
+        </div>
+      `;
+    }
+
+    function renderPopRegionPlansCards(regionKey, currentPlaceId) {
+      const mount = document.getElementById("pop-region-plans-grid");
+      if (!mount || !dungeonDatabase) return;
+
+      const regTitle = REGION_TITLES[regionKey] || regionKey;
+      const regIcon = REGION_ICONS[regionKey] || "💧";
+
+      const headerIcon = document.getElementById("pop-region-plans-icon");
+      const headerTitle = document.getElementById("pop-region-plans-title");
+      if (headerIcon) headerIcon.textContent = regIcon;
+      if (headerTitle) headerTitle.textContent = `PLANOS DE LA REGIÓN: ${regTitle.toUpperCase()}`;
+
+      const placesInReg = Object.values(dungeonDatabase).filter(p => p.region === regionKey);
+      mount.innerHTML = placesInReg.map(p => buildPopZoneCardHtml(p, p.id === currentPlaceId)).join("");
+    }
+
+    const PLACE_CONNECTIONS = {
+      kokiri: [
+        { target: "deku", label: "Adentrarse en: Gran Árbol Deku", type: "dungeon", icon: "🌳" },
+        { target: "perdido", label: "Camino a Bosque Perdido", type: "region", icon: "🌲" },
+        { target: "llanura", label: "Salida a Llanura de Hyrule", type: "world", icon: "🌾" }
+      ],
+      deku: [
+        { target: "kokiri", label: "Salir a Bosque Kokiri", type: "exit", icon: "⬅️" }
+      ],
+      perdido: [
+        { target: "prado", label: "Santuario del Bosque", type: "region", icon: "🏛️" },
+        { target: "kokiri", label: "Regresar a Bosque Kokiri", type: "exit", icon: "⬅️" },
+        { target: "goron", label: "Atajo a Ciudad Goron", type: "region", icon: "🌋" },
+        { target: "dominio", label: "Atajo a Dominio Zora", type: "region", icon: "💧" }
+      ],
+      prado: [
+        { target: "bosque", label: "Adentrarse en: Templo del Bosque", type: "dungeon", icon: "🏰" },
+        { target: "perdido", label: "Regresar a Bosque Perdido", type: "exit", icon: "⬅️" }
+      ],
+      bosque: [
+        { target: "prado", label: "Salir al Santuario del Bosque", type: "exit", icon: "⬅️" }
+      ],
+      rio: [
+        { target: "dominio", label: "Entrar a Región de los Zora", type: "region", icon: "💧" },
+        { target: "llanura", label: "Salir a Llanura de Hyrule", type: "world", icon: "🌾" }
+      ],
+      dominio: [
+        { target: "fuente", label: "Trono del Rey ➔ Fuente Zora", type: "region", icon: "🧊" },
+        { target: "rio", label: "Salir hacia Río Zora", type: "exit", icon: "⬅️" }
+      ],
+      fuente: [
+        { target: "jabu", label: "Adentrarse en: Tripa de Jabu-Jabu", type: "dungeon", icon: "🐋" },
+        { target: "hielo", label: "Adentrarse en: Caverna de Hielo", type: "dungeon", icon: "❄️" },
+        { target: "dominio", label: "Regresar a Región de los Zora", type: "exit", icon: "⬅️" }
+      ],
+      jabu: [
+        { target: "fuente", label: "Salir a Fuente Zora", type: "exit", icon: "⬅️" }
+      ],
+      hielo: [
+        { target: "fuente", label: "Salir a Fuente Zora", type: "exit", icon: "⬅️" }
+      ],
+      sendero: [
+        { target: "goron", label: "Entrar a Ciudad Goron", type: "region", icon: "🪨" },
+        { target: "dodongos", label: "Adentrarse en: Cueva de los Dodongos", type: "dungeon", icon: "🦎" },
+        { target: "crater", label: "Subir al Cráter de la Montaña", type: "region", icon: "🌋" },
+        { target: "kakariko", label: "Bajar a Aldea Kakariko", type: "exit", icon: "⬅️" }
+      ],
+      goron: [
+        { target: "crater", label: "Acceso secreto al Cráter", type: "region", icon: "🌋" },
+        { target: "sendero", label: "Salir a Sendero de la Montaña", type: "exit", icon: "⬅️" }
+      ],
+      dodongos: [
+        { target: "sendero", label: "Salir al Sendero de la Montaña", type: "exit", icon: "⬅️" }
+      ],
+      crater: [
+        { target: "fuego", label: "Adentrarse en: Templo del Fuego", type: "dungeon", icon: "🔥" },
+        { target: "sendero", label: "Bajar a Sendero de la Montaña", type: "exit", icon: "⬅️" },
+        { target: "goron", label: "Bajar a Ciudad Goron", type: "exit", icon: "⬅️" }
+      ],
+      fuego: [
+        { target: "crater", label: "Salir al Cráter de la Montaña", type: "exit", icon: "⬅️" }
+      ],
+      kakariko: [
+        { target: "pozo", label: "Descender a: Fondo del Pozo", type: "dungeon", icon: "🕳️" },
+        { target: "cementerio", label: "Entrar al Cementerio", type: "region", icon: "🪦" },
+        { target: "sendero", label: "Subir a Montaña de la Muerte", type: "region", icon: "🌋" },
+        { target: "llanura", label: "Salir a Llanura de Hyrule", type: "world", icon: "🌾" }
+      ],
+      cementerio: [
+        { target: "sombra", label: "Adentrarse en: Templo de las Sombras", type: "dungeon", icon: "👁️" },
+        { target: "kakariko", label: "Regresar a Aldea Kakariko", type: "exit", icon: "⬅️" }
+      ],
+      sombra: [
+        { target: "cementerio", label: "Salir al Cementerio", type: "exit", icon: "⬅️" }
+      ],
+      pozo: [
+        { target: "kakariko", label: "Subir a Aldea Kakariko", type: "exit", icon: "⬅️" }
+      ],
+      lago: [
+        { target: "agua", label: "Sumergirse en: Templo del Agua", type: "dungeon", icon: "💧" },
+        { target: "llanura", label: "Salir a Llanura de Hyrule", type: "world", icon: "🌾" }
+      ],
+      agua: [
+        { target: "lago", label: "Emerger hacia Lago Hylia", type: "exit", icon: "⬅️" }
+      ],
+      ciudadela: [
+        { target: "castillo", label: "Subir al Castillo de Hyrule", type: "region", icon: "👑" },
+        { target: "llanura", label: "Salir a Llanura de Hyrule", type: "world", icon: "🌾" }
+      ],
+      castillo: [
+        { target: "ciudadela", label: "Regresar a Ciudadela de Hyrule", type: "exit", icon: "⬅️" }
+      ],
+      valle: [
+        { target: "fortaleza", label: "Cruzar hacia Fortaleza Gerudo", type: "region", icon: "🏰" },
+        { target: "llanura", label: "Salir a Llanura de Hyrule", type: "world", icon: "🌾" }
+      ],
+      fortaleza: [
+        { target: "coloso", label: "Cruzar el Desierto hacia el Coloso", type: "region", icon: "🌪️" },
+        { target: "valle", label: "Regresar a Valle Gerudo", type: "exit", icon: "⬅️" }
+      ],
+      coloso: [
+        { target: "espiritu", label: "Adentrarse en: Templo del Espíritu", type: "dungeon", icon: "🏛️" },
+        { target: "fortaleza", label: "Regresar a Fortaleza Gerudo", type: "exit", icon: "⬅️" }
+      ],
+      espiritu: [
+        { target: "coloso", label: "Salir al Coloso del Desierto", type: "exit", icon: "⬅️" }
+      ],
+      llanura: [
+        { target: "lonlon", label: "Entrar al Rancho Lon Lon", type: "region", icon: "🐴" },
+        { target: "ciudadela", label: "Hacia Ciudadela de Hyrule", type: "region", icon: "🏰" },
+        { target: "kakariko", label: "Hacia Aldea Kakariko", type: "region", icon: "🏘️" },
+        { target: "rio", label: "Hacia Río Zora", type: "region", icon: "💧" },
+        { target: "kokiri", label: "Hacia Bosque Kokiri", type: "region", icon: "🌲" },
+        { target: "lago", label: "Hacia Lago Hylia", type: "region", icon: "⛵" },
+        { target: "valle", label: "Hacia Valle Gerudo", type: "region", icon: "🏜️" }
+      ],
+      lonlon: [
+        { target: "llanura", label: "Salir a Llanura de Hyrule", type: "exit", icon: "⬅️" }
+      ]
+    };
+
+    // ==========================================
+    // INTERACTIVE POPOUT ZOOM & PAN CONTROLLER
+    // ==========================================
+    class MapZoomController {
+      constructor(canvasEl, stageEl, options = {}) {
+        this.canvas = canvasEl;
+        this.stage = stageEl;
+        this.scale = 1.0;
+        this.minScale = options.minScale || 0.6;
+        this.maxScale = options.maxScale || 4.0;
+        this.panX = 0;
+        this.panY = 0;
+        this.isDragging = false;
+        this.startX = 0;
+        this.startY = 0;
+        this.onZoomChange = options.onZoomChange || null;
+
+        this.init();
+      }
+
+      init() {
+        this.stage.style.transformOrigin = "center center";
+
+        // Prevent native HTML5 image dragging
+        this.canvas.addEventListener("dragstart", (e) => {
+          e.preventDefault();
+          return false;
+        });
+
+        this.canvas.addEventListener("wheel", (e) => {
+          e.preventDefault();
+          const zoomFactor = e.deltaY < 0 ? 1.18 : 0.85;
+          this.zoomAt(zoomFactor, e.clientX, e.clientY);
+        }, { passive: false });
+
+        this.canvas.addEventListener("mousedown", (e) => {
+          if (e.button !== 0) return;
+          if (e.target.closest(".dungeon-item-pin, .poi-marker, button, .beacon-hud-card, .pop-zoom-controls, .pop-item-tooltip")) return;
+          e.preventDefault();
+          this.isDragging = true;
+          this.startX = e.clientX - this.panX;
+          this.startY = e.clientY - this.panY;
+          this.canvas.classList.add("is-panning");
+          this.stage.classList.add("is-panning");
+          document.body.style.userSelect = "none";
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          if (!this.isDragging) return;
+          e.preventDefault();
+          this.panX = e.clientX - this.startX;
+          this.panY = e.clientY - this.startY;
+          this.applyTransform(false);
+        });
+
+        window.addEventListener("mouseup", () => {
+          if (this.isDragging) {
+            this.isDragging = false;
+            this.canvas.classList.remove("is-panning");
+            this.stage.classList.remove("is-panning");
+            document.body.style.userSelect = "";
+          }
+        });
+
+        window.addEventListener("blur", () => {
+          if (this.isDragging) {
+            this.isDragging = false;
+            this.canvas.classList.remove("is-panning");
+            this.stage.classList.remove("is-panning");
+            document.body.style.userSelect = "";
+          }
+        });
+
+        let initialPinchDist = null;
+        let initialPinchScale = 1.0;
+
+        this.canvas.addEventListener("touchstart", (e) => {
+          if (e.touches.length === 1) {
+            if (e.target.closest(".dungeon-item-pin, .poi-marker, button, .beacon-hud-card, .pop-zoom-controls, .pop-item-tooltip")) return;
+            this.isDragging = true;
+            this.startX = e.touches[0].clientX - this.panX;
+            this.startY = e.touches[0].clientY - this.panY;
+          } else if (e.touches.length === 2) {
+            this.isDragging = false;
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            initialPinchDist = Math.hypot(dx, dy);
+            initialPinchScale = this.scale;
+          }
+        }, { passive: true });
+
+        this.canvas.addEventListener("touchmove", (e) => {
+          if (this.isDragging && e.touches.length === 1) {
+            this.panX = e.touches[0].clientX - this.startX;
+            this.panY = e.touches[0].clientY - this.startY;
+            this.applyTransform(false);
+          } else if (e.touches.length === 2 && initialPinchDist) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            const dist = Math.hypot(dx, dy);
+            const factor = dist / initialPinchDist;
+            this.scale = Math.min(this.maxScale, Math.max(this.minScale, initialPinchScale * factor));
+            this.applyTransform(false);
+          }
+        }, { passive: true });
+
+        this.canvas.addEventListener("touchend", () => {
+          this.isDragging = false;
+          initialPinchDist = null;
+        });
+
+        this.canvas.addEventListener("dblclick", (e) => {
+          if (e.target.closest(".dungeon-item-pin, .poi-marker, button, .pop-zoom-controls")) return;
+          if (this.scale > 1.25) {
+            this.reset();
+          } else {
+            this.zoomAt(2.0, e.clientX, e.clientY);
+          }
+        });
+      }
+
+      zoomAt(factor, clientX, clientY) {
+        const prevScale = this.scale;
+        let newScale = prevScale * factor;
+        newScale = Math.min(this.maxScale, Math.max(this.minScale, newScale));
+        if (newScale === prevScale) return;
+
+        if (clientX !== undefined && clientY !== undefined) {
+          const rect = this.canvas.getBoundingClientRect();
+          const ox = clientX - rect.left - rect.width / 2;
+          const oy = clientY - rect.top - rect.height / 2;
+          this.panX -= (ox - this.panX) * (newScale / prevScale - 1);
+          this.panY -= (oy - this.panY) * (newScale / prevScale - 1);
+        }
+
+        this.scale = newScale;
+        this.applyTransform(true);
+      }
+
+      zoomIn() {
+        this.zoomAt(1.25);
+      }
+
+      zoomOut() {
+        this.zoomAt(0.8);
+      }
+
+      reset() {
+        this.scale = 1.0;
+        this.panX = 0;
+        this.panY = 0;
+        this.applyTransform(true);
+      }
+
+      applyTransform(smooth = false) {
+        this.stage.style.transition = smooth ? "transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1)" : "none";
+        this.stage.style.transform = `translate(${this.panX}px, ${this.panY}px) scale(${this.scale})`;
+        if (this.onZoomChange) {
+          this.onZoomChange(this.scale);
+        }
+      }
+    }
+
+    let popDungeonZoom = null;
+    let popOverworldZoom = null;
+
+    function initPopZoom() {
+      const stage = document.getElementById("popout-main-stage");
+      const dungeonEl = document.getElementById("pop-dungeon-stage");
+      const overworldEl = document.getElementById("pop-overworld-stage");
+
+      if (stage && dungeonEl) {
+        popDungeonZoom = new MapZoomController(stage, dungeonEl, {
+          minScale: 0.6,
+          maxScale: 4.0,
+          onZoomChange: (scale) => {
+            const pctEl = document.getElementById("pop-zoom-pct");
+            if (pctEl) pctEl.textContent = `${Math.round(scale * 100)}%`;
+          }
+        });
+      }
+
+      if (stage && overworldEl) {
+        popOverworldZoom = new MapZoomController(stage, overworldEl, {
+          minScale: 0.6,
+          maxScale: 3.5,
+          onZoomChange: (scale) => {
+            const pctEl = document.getElementById("pop-zoom-pct");
+            if (pctEl) pctEl.textContent = `${Math.round(scale * 100)}%`;
+          }
+        });
+      }
+    }
+
+    function zoomInPopMap() {
+      if (currentMode === "dungeon" && popDungeonZoom) {
+        popDungeonZoom.zoomIn();
+      } else if (popOverworldZoom) {
+        popOverworldZoom.zoomIn();
+      }
+    }
+
+    function zoomOutPopMap() {
+      if (currentMode === "dungeon" && popDungeonZoom) {
+        popDungeonZoom.zoomOut();
+      } else if (popOverworldZoom) {
+        popOverworldZoom.zoomOut();
+      }
+    }
+
+    function resetZoomPopMap() {
+      if (currentMode === "dungeon" && popDungeonZoom) {
+        popDungeonZoom.reset();
+      } else if (popOverworldZoom) {
+        popOverworldZoom.reset();
+      }
+    }
+
+    let lastPopLiveX = null;
+    let lastPopLiveY = null;
+    let popFloorCandidate = null;
+    let popFloorCandidateCount = 0;
+    let lastPopPhysicalPlace = null;
+    let lastPopPhysicalFloor = null;
+
+    function updatePopAtmosphericLighting(timeInfo) {
+      // Funcionalidad de tiempo/luz descartada temporalmente
+      const svgImg = document.getElementById("pop-dungeon-svg");
+      if (svgImg) svgImg.style.filter = "none";
+    }
+
+    async function pollLiveCoordsPopout() {
+      try {
+        const res = await fetch(`/api/live_coords?place=${encodeURIComponent(selectedPlaceId)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.online && data.in_game) {
+          if (Array.isArray(data.collected_item_ids) && data.collected_item_ids.length > 0) {
+            let hasNew = false;
+            data.collected_item_ids.forEach(id => {
+              if (!serverCollectedIds.has(id)) {
+                serverCollectedIds.add(id);
+                hasNew = true;
+              }
+            });
+            if (hasNew) {
+              render();
+            }
+          }
+
+          // Auto-switch place if hero physically entered a different dungeon/area in real-time
+          if (data.detected_place && data.detected_place !== lastPopPhysicalPlace) {
+            lastPopPhysicalPlace = data.detected_place;
+            lastPopPhysicalFloor = data.detected_floor;
+            manualZoneOverride = false;
+            manualFloorOverride = false;
+            selectedPlaceId = data.detected_place;
+            activeFloorId = data.detected_floor || null;
+            if (data.time_info) {
+            updatePopAtmosphericLighting(data.time_info);
+          }
+          render();
+          } else if (data.detected_place && data.detected_place !== selectedPlaceId && !manualZoneOverride) {
+            selectedPlaceId = data.detected_place;
+            activeFloorId = data.detected_floor || null;
+            if (data.time_info) {
+            updatePopAtmosphericLighting(data.time_info);
+          }
+          render();
+          } else if (data.detected_floor && data.detected_floor !== activeFloorId && !manualFloorOverride) {
+            if (popFloorCandidate === data.detected_floor) {
+              popFloorCandidateCount++;
+              if (popFloorCandidateCount >= 3) {
+                activeFloorId = data.detected_floor;
+                popFloorCandidate = null;
+                popFloorCandidateCount = 0;
+                if (data.time_info) {
+            updatePopAtmosphericLighting(data.time_info);
+          }
+          render();
+              }
+            } else {
+              popFloorCandidate = data.detected_floor;
+              popFloorCandidateCount = 1;
+            }
+          } else {
+            popFloorCandidate = null;
+            popFloorCandidateCount = 0;
+          }
+
+          if (currentMode === "dungeon") {
+            const beacon = document.getElementById("pop-dungeon-beacon");
+            if (beacon) {
+              if (selectedPlaceId === data.detected_place) {
+                beacon.style.display = "flex";
+                lastPopLiveX = data.dungeon_x;
+                lastPopLiveY = data.dungeon_y;
+                beacon.style.left = `${data.dungeon_x}%`;
+                beacon.style.top = `${data.dungeon_y}%`;
+              } else {
+                beacon.style.display = "none";
+              }
+            }
+          }
+
+          const hudCoord = document.getElementById("pop-coords-text");
+          if (hudCoord) {
+            const flLabel = data.detected_floor ? `[${data.detected_floor}] ` : "";
+            hudCoord.innerHTML = `<span style="color:#00ffff; font-size:10px; font-weight:bold; margin-right:4px; text-shadow:0 0 6px #00ffff;">● RAM LIVE</span> ${flLabel}${data.coords_display}`;
+          }
+        }
+      } catch (e) {}
+    }
+
+    async function init() {
+      initPopZoom();
+      // 1. Read URL query params
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("place")) {
+        selectedPlaceId = urlParams.get("place");
+        manualZoneOverride = true;
+      }
+      if (urlParams.get("floor")) {
+        activeFloorId = urlParams.get("floor");
+      }
+      if (urlParams.get("mode")) {
+        currentMode = urlParams.get("mode");
+      }
+
+      // 2. Fetch dungeon database
+      try {
+        const res = await fetch("/static/dungeon_maps_data.json");
+        if (res.ok) {
+          const data = await res.json();
+          dungeonDatabase = data.places || data;
+          populateZoneSelect();
+        }
+      } catch (e) {
+        console.error("Error loading dungeon database:", e);
+      }
+
+      // 3. Set UI mode buttons
+      document.getElementById("pop-btn-dungeon").classList.toggle("active", currentMode === "dungeon");
+      document.getElementById("pop-btn-overworld").classList.toggle("active", currentMode === "overworld");
+
+      // 4. Initial Render & API Poll
+      render();
+      await fetchStatus();
+      setInterval(fetchStatus, 2500);
+      setInterval(pollLiveCoordsPopout, 120);
+    }
+
+    function populateZoneSelect() {
+      if (!dungeonDatabase) return;
+      const select = document.getElementById("pop-zone-select");
+      if (!select) return;
+
+      const keys = Object.keys(dungeonDatabase).sort((a, b) => {
+        return (dungeonDatabase[a].name || a).localeCompare(dungeonDatabase[b].name || b);
+      });
+
+      select.innerHTML = keys.map(k => {
+        const p = dungeonDatabase[k];
+        return `<option value="${k}" ${k === selectedPlaceId ? 'selected' : ''}>${p.name || k}</option>`;
+      }).join("");
+    }
+
+    function changePopPlace(placeId) {
+      manualZoneOverride = true;
+      selectedPlaceId = placeId;
+      activeFloorId = null;
+      render();
+    }
+
+    async function fetchStatus() {
+      try {
+        const res = await fetch("/api/status?game=nx2navi");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data) {
+          if (Array.isArray(data.collected_item_ids)) {
+            data.collected_item_ids.forEach(id => serverCollectedIds.add(id));
+          }
+          if (data.map) {
+            currentMapData = data.map;
+            if (data.map.hero_pin && data.map.hero_pin.place_id && !manualZoneOverride) {
+              selectedPlaceId = data.map.hero_pin.place_id;
+              const select = document.getElementById("pop-zone-select");
+              if (select) select.value = selectedPlaceId;
+            }
+          }
+          if (data.time_info) {
+            updatePopAtmosphericLighting(data.time_info);
+          }
+          render();
+        }
+      } catch (err) {
+        console.error("Error fetching status:", err);
+      }
+    }
+
+    function getCurrentPopAge() {
+      if (activeFloorId === "adulto") return "adult";
+      if (activeFloorId === "nino") return "child";
+      if (currentMapData && currentMapData.hero_pin && currentMapData.hero_pin.hero_age) {
+        return currentMapData.hero_pin.hero_age;
+      }
+      return "child";
+    }
+
+    function isItemMatchingAge(it, ageFilter) {
+      if (ageFilter === "all") return true;
+      const itemAge = it.age || "both";
+      if (itemAge === "both") return true;
+      return itemAge === ageFilter;
+    }
+
+    function render() {
+      if (!dungeonDatabase) return;
+
+      const place = dungeonDatabase[selectedPlaceId] || dungeonDatabase["fuente"] || Object.values(dungeonDatabase)[0];
+      if (!place) return;
+
+      const maps = place.maps || [];
+      const curAge = getCurrentPopAge();
+
+      // Update Popout Live Age Pill
+      const agePill = document.getElementById("pop-age-pill");
+      const ageText = document.getElementById("pop-age-text");
+      if (agePill && ageText) {
+        const isAdult = (curAge === "adult");
+        ageText.textContent = isAdult ? "LINK ADULTO" : "LINK NIÑO";
+        agePill.querySelector("span").textContent = isAdult ? "🗡️" : "🧒";
+        agePill.classList.toggle("adult", isAdult);
+      }
+
+      // Hero location info
+      const isHeroHere = (lastPopPhysicalPlace === place.id) || (currentMapData && currentMapData.hero_pin && currentMapData.hero_pin.place_id === place.id);
+      const heroFloor = (lastPopPhysicalPlace === place.id && lastPopPhysicalFloor)
+        ? lastPopPhysicalFloor
+        : ((isHeroHere && currentMapData && currentMapData.hero_pin && currentMapData.hero_pin.dungeon_floor) ? currentMapData.hero_pin.dungeon_floor : null);
+
+      if (!activeFloorId || !maps.some(m => m.id === activeFloorId)) {
+        if (maps.some(m => m.id === "nino") && maps.some(m => m.id === "adulto")) {
+          activeFloorId = (curAge === "adult") ? "adulto" : "nino";
+        } else {
+          activeFloorId = (isHeroHere && heroFloor) ? heroFloor : (place.default_map || (maps[0] ? maps[0].id : null));
+        }
+      }
+
+      const activeMap = maps.find(m => m.id === activeFloorId) || maps[0];
+
+      // Update Zone Select
+      const select = document.getElementById("pop-zone-select");
+      if (select && select.value !== place.id) {
+        select.value = place.id;
+      }
+
+      // Update Coords Pill
+      const coordsEl = document.getElementById("pop-coords-text");
+      if (coordsEl && currentMapData && currentMapData.hero_pin) {
+        coordsEl.textContent = currentMapData.hero_pin.coords_display || "";
+      }
+
+      // Render Floor Tabs
+      const tabsEl = document.getElementById("pop-floor-tabs");
+      if (tabsEl) {
+        tabsEl.innerHTML = maps.map(m => {
+          const isHeroFloor = (isHeroHere && heroFloor === m.id);
+          return `
+            <button class="floor-tab ${m.id === activeFloorId ? 'active' : ''}" onclick="selectFloor('${m.id}')">
+              ${isHeroFloor ? '📍 ' : ''}${m.label || m.id}
+            </button>
+          `;
+        }).join("");
+      }
+
+      // Telemetry Counts filtered by current age
+      const collected = getCollectedItems();
+
+      let totGs = 0, doneGs = 0;
+      let totHearts = 0, doneHearts = 0;
+      let totSecrets = 0, doneSecrets = 0;
+
+      if (currentMode === "dungeon") {
+        const activeItems = (place.items || []).filter(it => isItemMatchingAge(it, curAge));
+        totGs = activeItems.filter(it => it.cat === "gs").length;
+        doneGs = activeItems.filter(it => it.cat === "gs" && collected.has(it.id)).length;
+        totHearts = activeItems.filter(it => it.cat === "heart").length;
+        doneHearts = activeItems.filter(it => it.cat === "heart" && collected.has(it.id)).length;
+        totSecrets = activeItems.filter(it => it.cat === "fairy" || it.cat === "secret").length;
+        doneSecrets = activeItems.filter(it => (it.cat === "fairy" || it.cat === "secret") && collected.has(it.id)).length;
+      } else {
+        // Global Hyrule counts for overworld mode
+        Object.values(dungeonDatabase).forEach(p => {
+          (p.items || []).forEach(it => {
+            if (it.cat === "gs") {
+              totGs++;
+              if (collected.has(it.id)) doneGs++;
+            } else if (it.cat === "heart") {
+              totHearts++;
+              if (collected.has(it.id)) doneHearts++;
+            } else if (it.cat === "fairy" || it.cat === "secret") {
+              totSecrets++;
+              if (collected.has(it.id)) doneSecrets++;
+            }
+          });
+        });
+      }
+
+      const gsEl = document.getElementById("pop-gs-count");
+      if (gsEl) gsEl.textContent = `${doneGs} / ${totGs}`;
+      const heartsEl = document.getElementById("pop-hearts-count");
+      if (heartsEl) heartsEl.textContent = `${doneHearts} / ${totHearts}`;
+      const secEl = document.getElementById("pop-secrets-count");
+      if (secEl) secEl.textContent = `${doneSecrets} / ${totSecrets || 1}`;
+
+      // Render Stage
+      if (currentMode === "dungeon") {
+        document.getElementById("pop-dungeon-stage").style.display = "inline-block";
+        document.getElementById("pop-overworld-stage").style.display = "none";
+
+        const svgImg = document.getElementById("pop-dungeon-svg");
+        if (activeMap && svgImg) {
+          const newSrc = `/static/${activeMap.image}`;
+          if (svgImg.getAttribute("src") !== newSrc) {
+            svgImg.src = newSrc;
+          }
+        }
+
+        // Render pins filtered by age & active floor
+        const itemsLayer = document.getElementById("pop-dungeon-items");
+        if (itemsLayer) {
+          itemsLayer.innerHTML = "";
+          itemsLayer.classList.toggle("pins-hidden", !isPinsVisible);
+
+          const floorItems = (place.items || []).filter(it => (it.map_id === activeFloorId || maps.length === 1) && isItemMatchingAge(it, curAge));
+          floorItems.forEach(it => {
+            const pin = document.createElement("div");
+            const isDone = collected.has(it.id);
+            pin.className = "dungeon-item-pin" + (isDone ? " collected" : "");
+            pin.style.left = `${it.x}%`;
+            pin.style.top = `${it.y}%`;
+            const icon = it.cat === "gs" ? "🕷️" : (it.cat === "heart" ? "❤️" : "📦");
+            pin.innerHTML = `
+              <div class="pin-icon ${it.cat}">${icon}</div>
+              <div class="pin-label">${it.name}</div>
+            `;
+            pin.onclick = (e) => {
+              e.stopPropagation();
+              showTooltip(it);
+            };
+            itemsLayer.appendChild(pin);
+          });
+        }
+
+        // Render Hero Beacon
+        const beacon = document.getElementById("pop-dungeon-beacon");
+        const isHeroOnThisFloor = (isHeroHere || lastPopLiveX !== null) && (activeFloorId === heroFloor || maps.length === 1 || !heroFloor);
+        if (beacon) {
+          if (isHeroOnThisFloor) {
+            beacon.style.display = "flex";
+            const bx = (lastPopLiveX !== null) ? lastPopLiveX : (currentMapData && currentMapData.hero_pin && currentMapData.hero_pin.dungeon_x || 51.8);
+            const by = (lastPopLiveY !== null) ? lastPopLiveY : (currentMapData && currentMapData.hero_pin && currentMapData.hero_pin.dungeon_y || 51.5);
+            beacon.style.left = `${bx}%`;
+            beacon.style.top = `${by}%`;
+            const bLabel = document.getElementById("pop-beacon-label");
+            if (bLabel) bLabel.textContent = `${place.name} (${activeMap ? (activeMap.label || activeFloorId) : ''})`;
+          } else {
+            beacon.style.display = "none";
+          }
+        }
+
+        // Render sibling region plan cards in popout
+        const plansSec = document.getElementById("pop-region-plans-section");
+        if (plansSec) {
+          plansSec.style.display = "block";
+          renderPopRegionPlansCards(place.region, place.id);
+        }
+      } else {
+        document.getElementById("pop-dungeon-stage").style.display = "none";
+        document.getElementById("pop-overworld-stage").style.display = "inline-block";
+
+        const plansSec = document.getElementById("pop-region-plans-section");
+        if (plansSec) {
+          plansSec.style.display = "none";
+        }
+
+        const beacon = document.getElementById("pop-overworld-beacon");
+        if (beacon) {
+          if (currentMapData && currentMapData.hero_pin) {
+            beacon.style.display = "flex";
+            beacon.style.left = `${currentMapData.hero_pin.x}%`;
+            beacon.style.top = `${currentMapData.hero_pin.y}%`;
+            const bLabel = document.getElementById("pop-overworld-beacon-label");
+            if (bLabel) bLabel.textContent = currentMapData.hero_pin.location_name;
+          } else {
+            beacon.style.display = "none";
+          }
+        }
+
+        // Render Overworld POI markers with names & telemetry
+        const oLayer = document.getElementById("pop-overworld-markers");
+        if (oLayer && currentMapData && currentMapData.places) {
+          oLayer.innerHTML = "";
+          currentMapData.places.forEach(p => {
+            const isCur = currentMapData.hero_pin && currentMapData.hero_pin.place_id === p.id;
+            const rIcon = REGION_ICONS[p.region] || "📍";
+            let pItems = [];
+            if (dungeonDatabase && dungeonDatabase[p.id] && dungeonDatabase[p.id].items) {
+              pItems = dungeonDatabase[p.id].items;
+            }
+            const tGs = (p.totals && p.totals.gs !== undefined) ? p.totals.gs : pItems.filter(it => it.cat === "gs").length;
+            const dGs = pItems.filter(it => it.cat === "gs" && collected.has(it.id)).length;
+            const tH = (p.totals && p.totals.hearts !== undefined) ? p.totals.hearts : pItems.filter(it => it.cat === "heart").length;
+            const dH = pItems.filter(it => it.cat === "heart" && collected.has(it.id)).length;
+
+            const tAll = tGs + tH;
+            const dAll = dGs + dH;
+            const isClean = tAll > 0 && dAll === tAll;
+
+            const mEl = document.createElement("div");
+            mEl.className = `poi-marker ${isCur ? 'current' : ''}`;
+            mEl.style.left = `${p.x}%`;
+            mEl.style.top = `${p.y}%`;
+
+            let tagHtml = "";
+            if (isClean) {
+              tagHtml = `<span class="poi-tag clean">✔ LIMPIO</span>`;
+            } else if (tAll > 0) {
+              tagHtml = `
+                <span class="poi-tag gs ${dGs === tGs && tGs > 0 ? 'done' : ''}">🕷️ ${dGs}/${tGs}</span>
+                <span class="poi-tag heart ${dH === tH && tH > 0 ? 'done' : ''}">❤️ ${dH}/${tH}</span>
+              `;
+            }
+
+            mEl.innerHTML = `
+              <div class="poi-dot">${isCur ? "👑" : rIcon}</div>
+              <div class="poi-badge">
+                <span class="poi-name-text">${p.name}</span>
+                ${tagHtml ? `<div class="poi-counts-row">${tagHtml}</div>` : ''}
+              </div>
+            `;
+            mEl.onclick = () => {
+              changePopPlace(p.id);
+              setPopMode("dungeon");
+            };
+            oLayer.appendChild(mEl);
+          });
+        }
+      }
+    }
+
+    function selectFloor(floorId) {
+      resetZoomPopMap();
+      manualZoneOverride = true;
+      activeFloorId = floorId;
+      render();
+    }
+
+    function drillDownToPlace(targetPlaceId) {
+      resetZoomPopMap();
+      manualZoneOverride = true;
+      selectedPlaceId = targetPlaceId;
+      activeFloorId = null;
+      currentMode = "dungeon";
+      document.getElementById("pop-btn-dungeon").classList.add("active");
+      document.getElementById("pop-btn-overworld").classList.remove("active");
+      render();
+    }
+
+    function locatePopHero() {
+      manualZoneOverride = false;
+      manualFloorOverride = false;
+      
+      let targetPlace = lastPopPhysicalPlace || (currentMapData && currentMapData.hero_pin && currentMapData.hero_pin.place_id);
+      let targetFloor = lastPopPhysicalFloor || (currentMapData && currentMapData.hero_pin && currentMapData.hero_pin.dungeon_floor);
+
+      if (targetPlace) {
+        selectedPlaceId = targetPlace;
+        const select = document.getElementById("pop-zone-select");
+        if (select) select.value = selectedPlaceId;
+      }
+      if (targetFloor) {
+        activeFloorId = targetFloor;
+      }
+
+      currentMode = "dungeon";
+      document.getElementById("pop-btn-dungeon").classList.add("active");
+      document.getElementById("pop-btn-overworld").classList.remove("active");
+
+      render();
+
+      const beacon = document.getElementById("pop-dungeon-beacon");
+      if (beacon) {
+        beacon.classList.remove("locate-highlight");
+        void beacon.offsetWidth;
+        beacon.classList.add("locate-highlight");
+        beacon.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+      }
+    }
+
+    function setPopMode(mode) {
+      currentMode = mode;
+      document.getElementById("pop-btn-dungeon").classList.toggle("active", mode === "dungeon");
+      document.getElementById("pop-btn-overworld").classList.toggle("active", mode === "overworld");
+      render();
+    }
+
+    function togglePopPins() {
+      isPinsVisible = !isPinsVisible;
+      const btnLabel = document.getElementById("pop-pins-label");
+      const btnIcon = document.getElementById("pop-pins-icon");
+      if (btnLabel && btnIcon) {
+        btnLabel.textContent = isPinsVisible ? "Ocultar Pines" : "Ver Pines";
+        btnIcon.textContent = isPinsVisible ? "🙈" : "👁️";
+      }
+      render();
+    }
+
+    function togglePopFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(e => console.log(e));
+      } else {
+        document.exitFullscreen().catch(e => console.log(e));
+      }
+    }
+
+    let activeTooltipItem = null;
+
+    function showTooltip(item) {
+      activeTooltipItem = item;
+      const tip = document.getElementById("pop-item-tooltip");
+      const collected = getCollectedItems();
+      const isDone = collected.has(item.id);
+
+      document.getElementById("tooltip-item-name").textContent = item.name;
+      document.getElementById("tooltip-item-cat").textContent = item.cat === "gs" ? "Skulltula Dorada" : (item.cat === "heart" ? "Fragmento de Corazón" : "Gran Hada / Secreto");
+
+      const statusEl = document.getElementById("tooltip-item-status");
+      if (statusEl) {
+        statusEl.innerHTML = isDone 
+          ? `<span style="color: #00ffaa; font-weight: bold;">✔ Conseguido en Juego / Bitácora</span>` 
+          : `<span style="color: #ffd700;">⏳ Pendiente por conseguir</span>`;
+      }
+
+      document.getElementById("tooltip-item-hint").textContent = item.hint || item.desc || "Ubicación registrada en la bitácora regional de Hyrule.";
+
+      const btnToggle = document.getElementById("tooltip-toggle-btn");
+      if (btnToggle) {
+        btnToggle.textContent = isDone ? "✖ Desmarcar Ítem" : "✔ Marcar como Conseguido";
+      }
+      tip.style.display = "block";
+    }
+
+    function toggleActiveItem() {
+      if (!activeTooltipItem) return;
+      const itemId = activeTooltipItem.id;
+      const collected = getCollectedItems();
+      const isCurrentlyDone = collected.has(itemId);
+
+      let local = [];
+      try { local = JSON.parse(localStorage.getItem("zelda_notes_collected") || "[]"); } catch (e) {}
+      let uncollected = [];
+      try { uncollected = JSON.parse(localStorage.getItem("zelda_notes_uncollected") || "[]"); } catch (e) {}
+
+      let localSet = new Set(local);
+      let uncollectedSet = new Set(uncollected);
+
+      if (isCurrentlyDone) {
+        localSet.delete(itemId);
+        uncollectedSet.add(itemId);
+      } else {
+        localSet.add(itemId);
+        uncollectedSet.delete(itemId);
+      }
+
+      localStorage.setItem("zelda_notes_collected", JSON.stringify([...localSet]));
+      localStorage.setItem("zelda_notes_uncollected", JSON.stringify([...uncollectedSet]));
+      render();
+      showTooltip(activeTooltipItem);
+    }
+
+    function closeTooltip() {
+      document.getElementById("pop-item-tooltip").style.display = "none";
+    }
+
+    function showPopToast(msg) {
+      let toast = document.getElementById("popout-toast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "popout-toast";
+        toast.className = "purah-toast";
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.classList.add("visible");
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => {
+        toast.classList.remove("visible");
+      }, 2200);
+    }
+
+    async function manualReloadPopout() {
+      const btn = document.getElementById("pop-refresh-btn");
+      if (btn) btn.classList.add("is-refreshing");
+      try {
+        await fetchStatus();
+        render();
+        showPopToast("✨ Radar y planos actualizados");
+      } catch (err) {
+        console.error("Error manual reloading popout:", err);
+        showPopToast("⚠️ Error al sincronizar");
+      } finally {
+        setTimeout(() => {
+          if (btn) btn.classList.remove("is-refreshing");
+        }, 600);
+      }
+    }
+
+    // Storage event for live cross-window sync
+    window.addEventListener("storage", () => {
+      render();
+    });
+
+    // Keyboard Hotkeys
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "f" || e.key === "F") {
+        togglePopFullscreen();
+      } else if (e.key === "l" || e.key === "L") {
+        locatePopHero();
+      } else if (e.key === "p" || e.key === "P") {
+        togglePopPins();
+      } else if ((e.key === "r" || e.key === "R") && !e.ctrlKey && !e.metaKey) {
+        if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT")) return;
+        e.preventDefault();
+        manualReloadPopout();
+      } else if (e.key === "Escape") {
+        closeTooltip();
+      }
+    });
+
+    // ==========================================
+    // LAN / MOBILE ACCESS MODAL
+    // ==========================================
+    let currentPopoutLanInfo = null;
+
+    async function fetchPopoutLanInfo() {
+      if (currentPopoutLanInfo) return currentPopoutLanInfo;
+      try {
+        const res = await fetch("/api/lan_info");
+        if (res.ok) {
+          currentPopoutLanInfo = await res.json();
+        }
+      } catch (err) {
+        console.error("Error fetching LAN info:", err);
+      }
+      return currentPopoutLanInfo;
+    }
+
+    async function openLanPopoutModal() {
+      const modal = document.getElementById("popout-lan-modal");
+      if (!modal) return;
+      modal.style.display = "flex";
+
+      const info = await fetchPopoutLanInfo();
+      const lanUrl = info && info.url ? info.url : `http://${window.location.hostname}:8080`;
+      const popoutUrl = info && info.popout_url ? info.popout_url : `http://${window.location.hostname}:8080/popout`;
+
+      const disp = document.getElementById("pop-lan-url-display");
+      if (disp) disp.textContent = lanUrl;
+
+      const popDisp = document.getElementById("pop-popout-url-display");
+      if (popDisp) popDisp.textContent = popoutUrl;
+
+      const qrImg = document.getElementById("pop-lan-qr-img");
+      if (qrImg) {
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(popoutUrl)}`;
+      }
+    }
+
+    function closeLanPopoutModal() {
+      const modal = document.getElementById("popout-lan-modal");
+      if (modal) modal.style.display = "none";
+    }
+
+    async function copyPopoutLanUrl(type) {
+      const info = await fetchPopoutLanInfo();
+      const url = (type === "popout") 
+        ? (info && info.popout_url ? info.popout_url : `http://${window.location.hostname}:8080/popout`)
+        : (info && info.url ? info.url : `http://${window.location.hostname}:8080`);
+
+      const btnId = (type === "popout") ? "pop-copy-popout-btn" : "pop-copy-lan-btn";
+      const btn = document.getElementById(btnId);
+
+      try {
+        await navigator.clipboard.writeText(url);
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = "✅ ¡Copiado!";
+          btn.style.color = "#00ffaa";
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.style.color = "";
+          }, 2000);
+        }
+      } catch (e) {
+        prompt("Copia este enlace para tu móvil:", url);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+
+  <!-- LAN Modal in Popout -->
+  <div id="popout-lan-modal" class="modal-overlay" style="display: none;" onclick="if(event.target===this) closeLanPopoutModal()">
+    <div class="modal-card" style="max-width: 460px; background: rgba(8, 14, 24, 0.98); border: 1px solid var(--accent-cyan); border-radius: 12px; padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 20px rgba(0,229,255,0.3);">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,229,255,0.3); padding-bottom: 12px; margin-bottom: 14px;">
+        <h3 style="margin: 0; font-size: 1.05rem; font-family: var(--font-tech); color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+          <span>📱</span> Conectar Celular / Tablet (Wi-Fi)
+        </h3>
+        <button onclick="closeLanPopoutModal()" style="background: transparent; border: none; color: #88a; font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <div style="text-align: center;">
+        <p style="font-size: 0.85rem; color: #a0c4d8; margin: 0 0 14px 0; line-height: 1.4;">
+          Conecta cualquier smartphone o tablet a la <strong>misma red Wi-Fi</strong> para usarlo como mini-mapa o radar portátil:
+        </p>
+
+        <!-- QR Code (Por defecto apunta directo al popout/radar para móvil) -->
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 16px;">
+          <div style="background: #ffffff; padding: 10px; border-radius: 8px; display: inline-block; box-shadow: 0 0 15px rgba(0,229,255,0.25);">
+            <img id="pop-lan-qr-img" src="" alt="Código QR LAN" style="width: 160px; height: 160px; display: block; image-rendering: pixelated;">
+          </div>
+          <span style="font-size: 0.75rem; color: #88a; margin-top: 6px;">Escanea este código con la cámara de tu celular</span>
+        </div>
+
+        <!-- Popout Map URL -->
+        <div style="background: rgba(255, 170, 0, 0.08); border: 1px solid rgba(255, 170, 0, 0.4); border-radius: 8px; padding: 12px; margin-bottom: 10px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.72rem; color: #ffaa00; font-weight: 700; letter-spacing: 1px;">SOLO RADAR / MAPA EN VIVO</span>
+            <button id="pop-copy-popout-btn" class="modal-btn secondary" style="padding: 2px 10px; font-size: 0.75rem; background: rgba(255,170,0,0.2); border: 1px solid #ffaa00; color: #fff; border-radius: 4px; cursor: pointer;" onclick="copyPopoutLanUrl('popout')">📋 Copiar</button>
+          </div>
+          <div id="pop-popout-url-display" style="font-family: monospace; font-size: 1.05rem; color: #fff; font-weight: bold; word-break: break-all;">
+            http://...:8080/popout
+          </div>
+        </div>
+
+        <!-- Full Purah Pad URL -->
+        <div style="background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.4); border-radius: 8px; padding: 12px; margin-bottom: 8px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.72rem; color: #00e5ff; font-weight: 700; letter-spacing: 1px;">PURAH PAD COMPLETO</span>
+            <button id="pop-copy-lan-btn" class="modal-btn secondary" style="padding: 2px 10px; font-size: 0.75rem; background: rgba(0,229,255,0.2); border: 1px solid #00e5ff; color: #fff; border-radius: 4px; cursor: pointer;" onclick="copyPopoutLanUrl('full')">📋 Copiar</button>
+          </div>
+          <div id="pop-lan-url-display" style="font-family: monospace; font-size: 1.05rem; color: #fff; font-weight: bold; word-break: break-all;">
+            http://...:8080
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 14px; text-align: center;">
+        <button class="modal-btn primary" onclick="closeLanPopoutModal()" style="background: var(--accent-cyan); color: #000; font-weight: bold; padding: 8px 24px; border: none; border-radius: 6px; cursor: pointer;">Listo</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

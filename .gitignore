@@ -1,0 +1,24 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Scratch and reverse engineering exploratory scripts
+scratch/
+
+# Embedded portable runtime & zip packages
+runtime/
+*.zip
+
+# User-specific local configuration
+user_config.json
+
+# Logs & temp files
+*.log
+*.tmp
+
+# Editor environments
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

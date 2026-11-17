@@ -1,0 +1,392 @@
+{
+  "BarinadeStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u30b8\u30e3\u30d6\u30b8\u30e3\u30d6\u69d8\u306e\u304a\u8179\uff1a\u30dc\u30b9\u90e8\u5c4b\u30a8\u30ea\u30a2",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "BigOctoStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u30b8\u30e3\u30d6\u30b8\u30e3\u30d6\u69d8\u306e\u304a\u8179",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "BongoBongoStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u95c7\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "BossRushIntervalRoom": {
+    "AreaIndex": 0,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "DarkLinkStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u6c34\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "DeadHandStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u4e95\u6238\u306e\u5e95",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "DeathMountainCrater_Adult": {
+    "AreaIndex": 3,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "DeathMountainTrail_Adult": {
+    "AreaIndex": 4,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "DinolfosStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u96a0\u3057\u7a74",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "DodongoStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u30c9\u30c9\u30f3\u30b4\u306e\u6d1e\u7a9f",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "FlareDancerStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u708e\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "GanonStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u6700\u7d42\u6c7a\u6226\u5834",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "GanondorfStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u30ac\u30ce\u30f3\u57ce\u5185\u90e8",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "GerudoThiefStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u30b2\u30eb\u30c9\u306e\u7826",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "GerudoValley_Adult": {
+    "AreaIndex": 11,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "GohmaStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u30c7\u30af\u306e\u6a39\u30b5\u30de\u306e\u4e2d",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "GoronCity_Adult": {
+    "AreaIndex": 12,
+    "SoundSceneryName": "\u30b4\u30ed\u30f3\u30b7\u30c6\u30a3",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "Graveyard_Adult": {
+    "AreaIndex": 13,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {
+      "X": -110.0,
+      "Y": 90.0,
+      "Z": -70.0
+    },
+    "BoundingBoxMax": {}
+  },
+  "HyruleField_Adult": {
+    "AreaIndex": 15,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "IronKnuckleBlackStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u30ac\u30ce\u30f3\u57ce\u5185\u90e8",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "IronKnuckleWhiteStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u9b42\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "KakarikoVillage_Adult": {
+    "AreaIndex": 19,
+    "SoundSceneryName": "\u30ab\u30ab\u30ea\u30b3\u6751\uff08\u5927\u4eba\uff09",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "KakarikoVillage_Adult_Alternative": {
+    "AreaIndex": 19,
+    "SoundSceneryName": "\u708e\u4e0a\u76f4\u5f8c\u306e\u30ab\u30ab\u30ea\u30b3\u6751\uff08\u5927\u4eba\uff09",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "KokiriForest_Adult": {
+    "AreaIndex": 20,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "LizalfosStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u30c9\u30c9\u30f3\u30b4\u306e\u6d1e\u7a9f",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "LostWood_Adult": {
+    "AreaIndex": 21,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "Market_Adult": {
+    "AreaIndex": 22,
+    "SoundSceneryName": "\u30cf\u30a4\u30e9\u30eb\u57ce\u4e0b\u753a\uff08\u5927\u4eba\uff09",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "MegStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u68ee\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "MorphaStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u6c34\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "NaboruStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u9b42\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "PhantomGanonStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u68ee\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "SacredForestMeadow_Adult": {
+    "AreaIndex": 24,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "StalfosStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u95c7\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "StalfosWeakStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u68ee\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "TwinrovaStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u9b42\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "VolvagiaStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u708e\u306e\u795e\u6bbf",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "WolfosStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u68ee\u306e\u8056\u57df",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "WolfosWhiteStage": {
+    "AreaIndex": 0,
+    "SoundSceneryName": "[\u5922]\u6c37\u306e\u6d1e\u7a9f",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "ZoraDomain_Adult": {
+    "AreaIndex": 28,
+    "SoundSceneryName": "\u30be\u30fc\u30e9\u306e\u91cc\uff08\u5927\u4eba\uff09",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {
+      "X": 140.0,
+      "Y": 140.0,
+      "Z": 40.0
+    }
+  },
+  "ZoraDomain_Adult_Alternative": {
+    "AreaIndex": 28,
+    "SoundSceneryName": "\u6c37\u304c\u89e3\u3051\u305f\u30be\u30fc\u30e9\u306e\u91cc\uff08\u5927\u4eba\uff09",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  },
+  "ZoraFountain_Adult": {
+    "AreaIndex": 29,
+    "SoundSceneryName": "\u30be\u30fc\u30e9\u306e\u6cc9\uff08\u5927\u4eba\uff09",
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {
+      "X": 150.0,
+      "Y": 200.0,
+      "Z": 120.0
+    }
+  },
+  "ZoraRiver_Adult": {
+    "AreaIndex": 30,
+    "SoundSceneryName": null,
+    "BaseLocation": null,
+    "WorldAabbMin": {},
+    "WorldAabbMax": {},
+    "BoundingBoxMin": {},
+    "BoundingBoxMax": {}
+  }
+}

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Zelda Notes — Purah Pad Companion</title>
+  <link rel="stylesheet" href="/static/style.css?v=3.9.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="purah-shell">
+    <!-- Top Navigation Bar -->
+    <header class="purah-header">
+      <div class="sheikah-brand">
+        <div class="sheikah-eye"></div>
+        <div class="brand-text">
+          <span class="brand-title">ZELDA NOTES</span>
+          <span class="brand-subtitle">PURAH PAD COMPANION OS v3.2</span>
+        </div>
+      </div>
+
+      <div class="header-actions-group">
+        <button class="header-config-btn" onclick="openLanModal()" title="Abrir en celular o tablet (Misma red Wi-Fi)">
+          <span>📱</span> Móvil
+        </button>
+        <button class="header-refresh-btn" id="manual-refresh-btn" onclick="manualReloadData()" title="Recargar telemetría y mapa en vivo (R)">
+          <span class="refresh-icon">🔄</span> Recargar
+        </button>
+        <button class="header-config-btn" onclick="openConfigModal()" title="Configuración de guardado">
+          <span>⚙️</span> Partida
+        </button>
+        <div class="status-pill">
+          <span class="pulse-dot"></span>
+          <span id="sync-text">SINCRONIZADO</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Card: Current Location & Live Screenshot -->
+    <section class="hero-status-card">
+      <div class="screenshot-container">
+        <img id="live-screenshot" src="" alt="Captura en tiempo real" class="live-thumb">
+        <div class="scanlines"></div>
+        <div class="hud-reticle"></div>
+        <div class="screenshot-badge">
+          <span id="save-slot-badge">SLOT 00</span>
+        </div>
+      </div>
+
+      <div class="hero-info">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+          <div class="location-tag">UBICACIÓN ACTUAL EN JUEGO</div>
+          <span class="hero-age-pill" id="hero-age-badge">🧒 LINK NIÑO</span>
+        </div>
+        <h1 id="current-location" class="location-name">Cargando partida...</h1>
+        
+        <div class="meta-row">
+          <div class="meta-item">
+            <span class="meta-label">Último Guardado:</span>
+            <span id="last-saved-time" class="meta-val">--</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Ubicación GPS:</span>
+            <span id="hero-gps-live" class="meta-val" style="color:#00ffff; font-weight:700;">● Radar Activo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Tabs -->
+    <div class="section-tabs">
+      <button class="sec-tab active" id="tab-btn-map" onclick="switchSection('map')">🗺️ Mapa & Mazmorras</button>
+      <button class="sec-tab" id="tab-btn-inventory" onclick="switchSection('inventory')">🎒 Equipamiento & Objetos</button>
+    </div>
+
+    <!-- Map & Dungeon Tab Content (Default Active) -->
+    <main id="tab-map" class="tab-panel active">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title" id="map-header-title">PLANO DE LA ZONA</h2>
+          <div class="panel-sub" id="map-header-sub">Cartografía por Plantas & Coleccionables Nintendúo</div>
+        </div>
+        <div class="discovery-badge">
+          <span id="discovery-pct">0%</span>
+          <span class="sub-label">EXPLORADO</span>
+        </div>
+      </div>
+
+      <!-- View Mode Switcher: Regional / Dungeon vs Overworld Hyrule -->
+      <div class="map-mode-bar">
+        <button id="btn-mode-dungeon" class="mode-btn active" onclick="setMapMode('dungeon')">
+          <span id="dungeon-btn-icon">🏰</span>
+          <span id="dungeon-btn-label">Fuente Zora</span>
+        </button>
+        <button id="btn-mode-overworld" class="mode-btn" onclick="setMapMode('overworld')">
+          <span>🗺️</span>
+          <span>Reino de Hyrule (General)</span>
+        </button>
+      </div>
+
+            <!-- Sheikah Regional Exploration HUD (Anti-Spoilers Explorer Mode) -->
+      <section class="regional-telemetry-card" id="regional-telemetry-card">
+        <div class="telemetry-header">
+          <div class="zone-badge-wrap">
+            <span class="hud-tag">BITÁCORA REGIONAL</span>
+            <h3 class="zone-heading" id="hud-zone-name">FUENTE ZORA</h3>
+          </div>
+          <div class="telemetry-badges">
+            <div class="tele-badge gs" title="Skulltulas Doradas en esta zona">
+              <span class="badge-icon">🕷️</span>
+              <div class="badge-text-col">
+                <span class="badge-label">SKULLTULAS</span>
+                <strong class="badge-val" id="hud-gs-count">0 / 3</strong>
+              </div>
+            </div>
+            <div class="tele-badge heart" title="Fragmentos de Corazón en esta zona">
+              <span class="badge-icon">❤️</span>
+              <div class="badge-text-col">
+                <span class="badge-label">CORAZONES</span>
+                <strong class="badge-val" id="hud-hearts-count">0 / 2</strong>
+              </div>
+            </div>
+            <div class="tele-badge secret" title="Secretos y Hadas en esta zona">
+              <span class="badge-icon">✨</span>
+              <div class="badge-text-col">
+                <span class="badge-label">SECRETOS</span>
+                <strong class="badge-val" id="hud-secrets-count">0 / 1</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Explorer Controls -->
+        <div class="telemetry-controls">
+          <button id="toggle-pins-btn" class="tele-btn" onclick="toggleMapPins()">
+            <span id="toggle-pins-icon">🙈</span>
+            <span id="toggle-pins-label">Ocultar Pines en el Plano</span>
+          </button>
+          <button class="tele-btn secondary" onclick="locateLink()">
+            <span>🎯</span> Centrar y Resaltar a Link
+          </button>
+          <button class="tele-btn theater" onclick="toggleTheaterMode()" title="Expandir mapa a pantalla completa en esta ventana (Tecla F)">
+            <span>⛶</span> Enfocar en Grande
+          </button>
+          <button class="tele-btn popout" onclick="openMapPopout()" title="Abrir mapa en una ventana flotante independiente">
+            <span>↗</span> Ventana Flotante
+          </button>
+        </div>
+      </section>
+
+      <!-- Progress Bar (Always present) -->
+      <div class="progress-bar-container">
+        <div id="discovery-progress-fill" class="progress-bar-fill" style="width: 0%;"></div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 1: REGIONAL / DUNGEON INTERIOR FLOOR VIEW -->
+      <!-- ============================================== -->
+      <div id="dungeon-view" class="map-view-container active">
+        <!-- Hierarchical Breadcrumb Navigation (Hyrule > Reino > Zona) -->
+        <nav class="map-breadcrumb-nav" id="map-breadcrumbs"></nav>
+
+        <!-- Sub-Zones of this Region Ribbon -->
+        <div class="region-subzones-bar" id="region-subzones-bar"></div>
+
+        <!-- Floor / Submap Selector Tabs -->
+        <div class="floor-tabs-bar" id="floor-tabs-bar">
+          <!-- Injected via JavaScript (e.g. Planta P1, PB, S1) -->
+        </div>
+
+        <div class="dungeon-canvas-wrapper" id="dungeon-wrapper">
+          <!-- Quick action overlay buttons -->
+          <div class="map-quick-actions">
+            <button class="quick-act-btn" onclick="toggleTheaterMode()" title="Expandir mapa a pantalla completa en esta ventana (F)">
+              <span>⛶</span> Enfocar en Grande
+            </button>
+            <button class="quick-act-btn" onclick="openMapPopout()" title="Abrir en ventana flotante independiente">
+              <span>↗</span> Ventana Aparte
+            </button>
+          </div>
+
+          <!-- Theater Mode Fullscreen HUD Header (Visible only in theater mode) -->
+          <div class="theater-header-bar" id="theater-dungeon-header">
+            <div class="theater-zone-meta">
+              <span class="theater-badge">RADAR ENFOCADO</span>
+              <strong class="theater-zone-title" id="theater-dungeon-title">FUENTE ZORA</strong>
+              <span class="theater-floor-pill" id="theater-dungeon-floor">LINK NIÑO</span>
+            </div>
+
+            <!-- Theater Live Telemetry Counts -->
+            <div class="theater-telemetry-group">
+              <div class="theater-tele-pill gs" title="Skulltulas Doradas en esta zona">
+                <span class="t-pill-icon">🕷️</span>
+                <div class="t-pill-info">
+                  <span class="t-pill-lbl">SKULLTULAS</span>
+                  <strong class="t-pill-val" id="theater-gs-count">0 / 0</strong>
+                </div>
+              </div>
+              <div class="theater-tele-pill heart" title="Piezas de Corazón en esta zona">
+                <span class="t-pill-icon">❤️</span>
+                <div class="t-pill-info">
+                  <span class="t-pill-lbl">CORAZONES</span>
+                  <strong class="t-pill-val" id="theater-hearts-count">0 / 0</strong>
+                </div>
+              </div>
+              <div class="theater-tele-pill secret" title="Grandes Hadas y Secretos en esta zona">
+                <span class="t-pill-icon">✨</span>
+                <div class="t-pill-info">
+                  <span class="t-pill-lbl">SECRETOS</span>
+                  <strong class="t-pill-val" id="theater-secrets-count">0 / 0</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="theater-tabs-mount" id="theater-floor-tabs"></div>
+            <div class="theater-actions">
+              <button class="theater-btn refresh-btn" onclick="manualReloadData()" title="Recargar telemetría y mapa (R)">
+                <span class="refresh-icon">🔄</span> Recargar
+              </button>
+              <button class="theater-btn locate-hero-btn" onclick="locateLink()" title="Regresar inmediatamente al lugar donde se encuentra Link">
+                <span>👑</span> Regresar a Link
+              </button>
+              <button class="theater-btn" onclick="toggleMapPins()" title="Alternar visibilidad de pines">
+                <span id="theater-pins-icon">🙈</span> <span id="theater-pins-label">Ocultar Pines</span>
+              </button>
+              <button class="theater-btn" onclick="openMapPopout()" title="Abrir en ventana flotante aparte">
+                <span>↗</span> Ventana Aparte
+              </button>
+              <button class="theater-btn close-btn" onclick="toggleTheaterMode()" title="Salir de pantalla completa (Esc)">
+                <span>✕</span> Salir (Esc)
+              </button>
+            </div>
+          </div>
+
+          <div class="dungeon-canvas" id="dungeon-canvas">
+            <!-- Floating Zoom Controls -->
+            <div class="map-zoom-controls" id="dungeon-zoom-controls">
+              <button class="zoom-btn" onclick="zoomInMap()" title="Acercar plano (+ / Rueda arriba)">
+                <span>➕</span>
+              </button>
+              <button class="zoom-btn zoom-level-btn" onclick="resetZoomMap()" title="Restablecer tamaño (100%)">
+                <span id="dungeon-zoom-pct">100%</span>
+              </button>
+              <button class="zoom-btn" onclick="zoomOutMap()" title="Alejar plano (- / Rueda abajo)">
+                <span>➖</span>
+              </button>
+              <button class="zoom-btn reset-btn" onclick="resetZoomMap()" title="Restablecer encuadre original">
+                <span>🔄</span>
+              </button>
+            </div>
+
+            <div class="dungeon-map-stage" id="dungeon-map-stage">
+              <img id="dungeon-floor-svg" src="" alt="Plano de la Mazmorra" class="dungeon-svg-image" draggable="false">
+              
+              <!-- Items / Collectibles Layer pinned to rooms -->
+              <div id="dungeon-items-layer" class="dungeon-items-layer"></div>
+
+              <!-- Live Link Beacon in Dungeon -->
+              <div id="dungeon-hero-beacon" class="hero-beacon">
+                <div class="beacon-pulse-core">
+                  <div class="beacon-spotlight"></div>
+                  <div class="beacon-wave-1"></div>
+                  <div class="beacon-wave-2"></div>
+                  <div class="beacon-center-eye">
+                    <div class="sheikah-pupil"></div>
+                  </div>
+                </div>
+                <div class="beacon-arrow">▼</div>
+                <div class="beacon-hud-card">
+                  <span class="hero-title">👑 TÚ ESTÁS AQUÍ</span>
+                  <strong id="dungeon-beacon-zone" class="hero-zone">Fuente Zora</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floor HUD Footer -->
+          <div class="map-footer-hud">
+            <div class="hud-col">
+              <span class="hud-label">ZONA:</span>
+              <span id="dungeon-hud-place" class="hud-value">FUENTE ZORA</span>
+            </div>
+            <div id="hud-target-proximity" class="hud-target-proximity-pill" style="display:none;" title="Coleccionable detectado en el radio de Link"></div>
+            <div class="hud-col right">
+              <span class="hud-label">PLANTA ACTIVA:</span>
+              <span id="dungeon-hud-floor" class="hud-value">LINK NIÑO</span>
+            </div>
+          </div>
+
+          <!-- Floating Button to Return to Link Location at any time -->
+          <button class="floating-locate-fab" onclick="locateLink()" title="Regresar inmediatamente al lugar donde se encuentra Link en el juego">
+            <span class="fab-icon">👑</span> Regresar a Link
+          </button>
+        </div>
+
+        <!-- Section: Adentrarse en Planos de esta Región -->
+        <section class="region-plans-section" id="region-plans-section">
+          <div class="region-plans-header">
+            <div class="plans-title-wrap">
+              <span class="plans-header-icon" id="region-plans-icon">💧</span>
+              <div>
+                <h3 class="plans-header-title" id="region-plans-title">PLANOS DE LA REGIÓN: REINO DE LOS ZORA</h3>
+                <span class="plans-header-sub">Selecciona un plano para adentrarte directamente en sus estancias</span>
+              </div>
+            </div>
+            <button class="back-to-hyrule-btn" onclick="setMapMode('overworld')">
+              <span>🗺️</span> Volver al Mapa General
+            </button>
+          </div>
+          <div class="region-plans-grid" id="region-plans-grid">
+            <!-- Cards rendered dynamically via renderRegionPlansCards() in app.js -->
+          </div>
+        </section>
+
+        <!-- Collectibles Checklist & Detailed Guides -->
+        <section class="dungeon-checklist-card" id="dungeon-checklist-card">
+          <div class="checklist-header">
+            <div>
+              <div class="checklist-title-row">
+                <h3 class="checklist-title">COLECCIONABLES DE ESTA ZONA</h3>
+                <span id="checklist-age-pill" class="checklist-age-pill">🧒 ÉPOCA: LINK NIÑO</span>
+              </div>
+              <div class="checklist-sub">Skulltulas doradas, contenedores y cofres disponibles</div>
+            </div>
+            <span id="dungeon-items-summary" class="summary-pill">0 Detectados</span>
+          </div>
+
+          <!-- Age Filter Ribbon: niño vs adulto vs ambos -->
+          <div class="checklist-age-bar" id="checklist-age-bar">
+            <span class="age-bar-tag">ÉPOCA TEMPORAL:</span>
+            <button class="age-toggle-btn active" id="btn-age-child" onclick="setAgeFilter('child')">
+              <span>🧒</span> Solo Niño
+            </button>
+            <button class="age-toggle-btn" id="btn-age-adult" onclick="setAgeFilter('adult')">
+              <span>🗡️</span> Solo Adulto
+            </button>
+            <button class="age-toggle-btn" id="btn-age-all" onclick="setAgeFilter('all')">
+              <span>🌐</span> Ver Ambos
+            </button>
+            <span class="age-auto-sync" id="age-auto-sync-tag">👑 En juego: Link Niño</span>
+          </div>
+
+          <div id="dungeon-items-list" class="checklist-items-grid"></div>
+        </section>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 2: OVERWORLD REALM VIEW (hyrule.webp)      -->
+      <!-- ============================================== -->
+      <div id="overworld-view" class="map-view-container" style="display: none;">
+        <!-- Region Filter Chips -->
+        <div class="filter-chips-container" id="filter-chips">
+          <button class="chip active" data-filter="all" onclick="filterPlaces('all')">Todos</button>
+          <button class="chip" data-filter="discovered" onclick="filterPlaces('discovered')">Descubiertos</button>
+          <button class="chip" data-filter="Zora" onclick="filterPlaces('Zora')">💧 Zora</button>
+          <button class="chip" data-filter="Montaña" onclick="filterPlaces('Montaña')">🌋 Montaña</button>
+          <button class="chip" data-filter="Bosques" onclick="filterPlaces('Bosques')">🌲 Bosques</button>
+          <button class="chip" data-filter="Centro" onclick="filterPlaces('Centro')">🌿 Centro</button>
+          <button class="chip" data-filter="Castillo" onclick="filterPlaces('Castillo')">🏰 Castillo</button>
+          <button class="chip" data-filter="Lago" onclick="filterPlaces('Lago')">⛵ Lago</button>
+          <button class="chip" data-filter="Oeste" onclick="filterPlaces('Oeste')">🏜️ Desierto</button>
+        </div>
+
+        <div class="map-viewport-wrapper" id="overworld-wrapper">
+          <!-- Quick action overlay buttons -->
+          <div class="map-quick-actions">
+            <button class="quick-act-btn" onclick="toggleTheaterMode()" title="Expandir mapa a pantalla completa en esta ventana (F)">
+              <span>⛶</span> Enfocar en Grande
+            </button>
+            <button class="quick-act-btn" onclick="openMapPopout()" title="Abrir en ventana flotante independiente">
+              <span>↗</span> Ventana Aparte
+            </button>
+          </div>
+
+          <!-- Theater Mode Fullscreen HUD Header (Visible only in theater mode) -->
+          <div class="theater-header-bar" id="theater-overworld-header">
+            <div class="theater-zone-meta">
+              <span class="theater-badge">RADAR ENFOCADO</span>
+              <strong class="theater-zone-title">REINO DE HYRULE</strong>
+              <span class="theater-floor-pill">MAPA GENERAL</span>
+            </div>
+
+            <!-- Overworld Live Global Progress in Theater -->
+            <div class="theater-telemetry-group">
+              <div class="theater-tele-pill general" title="Descubrimiento total de Hyrule">
+                <span class="t-pill-icon">🧭</span>
+                <div class="t-pill-info">
+                  <span class="t-pill-lbl">EXPLORACIÓN</span>
+                  <strong class="t-pill-val" id="theater-ov-pct">0%</strong>
+                </div>
+              </div>
+              <div class="theater-tele-pill gs" title="Skulltulas recolectadas en total">
+                <span class="t-pill-icon">🕷️</span>
+                <div class="t-pill-info">
+                  <span class="t-pill-lbl">SKULLTULAS</span>
+                  <strong class="t-pill-val" id="theater-ov-gs">0 / 100</strong>
+                </div>
+              </div>
+              <div class="theater-tele-pill heart" title="Piezas de corazón registradas">
+                <span class="t-pill-icon">❤️</span>
+                <div class="t-pill-info">
+                  <span class="t-pill-lbl">CORAZONES</span>
+                  <strong class="t-pill-val" id="theater-ov-hearts">0 / 36</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="theater-actions">
+              <button class="theater-btn" onclick="openMapPopout()" title="Abrir en ventana flotante aparte">
+                <span>↗</span> Ventana Aparte
+              </button>
+              <button class="theater-btn close-btn" onclick="toggleTheaterMode()" title="Salir de pantalla completa (Esc)">
+                <span>✕</span> Salir (Esc)
+              </button>
+            </div>
+          </div>
+
+          <div class="map-canvas-container" id="map-canvas-container">
+            <!-- Overworld Floating Zoom Controls -->
+            <div class="map-zoom-controls" id="overworld-zoom-controls">
+              <button class="zoom-btn" onclick="zoomInMap()" title="Acercar mapa (+ / Rueda arriba)">
+                <span>➕</span>
+              </button>
+              <button class="zoom-btn zoom-level-btn" onclick="resetZoomMap()" title="Restablecer tamaño (100%)">
+                <span id="overworld-zoom-pct">100%</span>
+              </button>
+              <button class="zoom-btn" onclick="zoomOutMap()" title="Alejar mapa (- / Rueda abajo)">
+                <span>➖</span>
+              </button>
+              <button class="zoom-btn reset-btn" onclick="resetZoomMap()" title="Restablecer encuadre original">
+                <span>🔄</span>
+              </button>
+            </div>
+
+            <div class="overworld-map-stage" id="overworld-map-stage">
+              <img id="hyrule-map-img" src="/static/hyrule.webp" alt="Mapa de Hyrule" class="hyrule-map-image" draggable="false">
+              <div id="fog-overlay-layer" class="fog-overlay-layer"></div>
+              <div id="map-markers-layer" class="map-markers-layer"></div>
+
+              <!-- Overworld Live Link Beacon -->
+              <div id="live-hero-beacon" class="hero-beacon" style="left: 80.3%; top: 52.2%;">
+                <div class="beacon-pulse-core">
+                  <div class="beacon-spotlight"></div>
+                  <div class="beacon-wave-1"></div>
+                  <div class="beacon-wave-2"></div>
+                  <div class="beacon-center-eye">
+                    <div class="sheikah-pupil"></div>
+                  </div>
+                </div>
+                <div class="beacon-arrow">▼</div>
+                <div class="beacon-hud-card">
+                  <span class="hero-title">👑 TÚ ESTÁS AQUÍ</span>
+                  <strong id="beacon-zone-name" class="hero-zone">Fuente Zora</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-footer-hud">
+            <div class="hud-col">
+              <span class="hud-label">TU POSICIÓN:</span>
+              <span id="hud-sector-text" class="hud-value">FUENTE ZORA (ZORA)</span>
+            </div>
+            <div class="hud-col right">
+              <span class="hud-label">COORDENADAS 3D:</span>
+              <span id="hud-coords-text" class="hud-value">[X: 10.24, Y: 102.98, Z: -24.48]</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overworld Region Details Inspector Card -->
+        <section id="region-inspector-card" class="region-info-card">
+          <div class="region-card-header">
+            <div>
+              <span class="region-badge" id="insp-badge">ZONA SELECCIONADA</span>
+              <h3 class="region-name" id="insp-name">Fuente Zora</h3>
+              <div class="region-sub" id="insp-sub">Región: Zora</div>
+            </div>
+            <div class="region-status-icon" id="insp-status-icon">💧</div>
+          </div>
+
+          <!-- Zone Telemetry: Coleccionables y faltantes en la zona seleccionada -->
+          <div class="insp-telemetry-row" id="insp-telemetry-row">
+            <div class="insp-tele-badge gs">
+              <span class="insp-icon">🕷️</span>
+              <div class="insp-data-col">
+                <span class="insp-lbl">SKULLTULAS</span>
+                <strong class="insp-val" id="insp-gs-val">0 / 3</strong>
+                <small class="insp-rem" id="insp-gs-rem">Faltan 3</small>
+              </div>
+            </div>
+            <div class="insp-tele-badge heart">
+              <span class="insp-icon">❤️</span>
+              <div class="insp-data-col">
+                <span class="insp-lbl">CORAZONES</span>
+                <strong class="insp-val" id="insp-heart-val">0 / 2</strong>
+                <small class="insp-rem" id="insp-heart-rem">Faltan 2</small>
+              </div>
+            </div>
+            <div class="insp-tele-badge fairy">
+              <span class="insp-icon">✨</span>
+              <div class="insp-data-col">
+                <span class="insp-lbl">SECRETOS</span>
+                <strong class="insp-val" id="insp-fairy-val">0 / 1</strong>
+                <small class="insp-rem" id="insp-fairy-rem">Falta 1</small>
+              </div>
+            </div>
+          </div>
+
+          <p class="region-desc" id="insp-desc">
+            Detrás del trono del Rey Zora, la Fuente Zora guarda dos piezas de corazón, tres Skulltulas doradas y la gran deidad acuática Lord Jabu-Jabu.
+          </p>
+
+          <div class="action-btn-row">
+            <button class="open-dungeon-btn" id="btn-open-dungeon" onclick="openSelectedPlaceDungeon()">
+              🏰 Ver Plano Detallado & Coleccionables
+            </button>
+          </div>
+        </section>
+
+        <!-- Sheikah Kingdoms Overview Dashboard (Lo que llevas y lo que falta por Reino) -->
+        <section class="kingdoms-overview-section" id="kingdoms-overview-section">
+          <div class="kingdoms-section-header">
+            <div>
+              <span class="hud-tag">EXPLORACIÓN DE HYRULE</span>
+              <h3 class="kingdoms-heading">BITÁCORA DE REINOS — PROGRESO Y FALTANTES</h3>
+              <div class="kingdoms-sub">Haz clic en cualquier reino para filtrar y enfocar en el mapa general</div>
+            </div>
+            <div class="kingdoms-global-stat" id="kingdoms-global-stat">
+              <span class="global-lbl">COLECCIONABLES ENCONTRADOS:</span>
+              <strong id="global-collected-count">0 / 142</strong>
+            </div>
+          </div>
+
+          <div class="kingdoms-grid" id="kingdoms-grid">
+            <!-- Dynamically rendered via renderKingdomsGrid() in app.js -->
+          </div>
+        </section>
+      </div>
+
+      
+    </main>
+
+    <!-- Inventory Tab Content -->
+    <main id="tab-inventory" class="tab-panel">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">REGISTRO DE ALFORJA & EQUIPO</h2>
+          <div class="panel-sub">Objetos, Armas y Coleccionables Detectados</div>
+        </div>
+        <span id="items-count-badge" class="count-pill">0 Detectados</span>
+      </div>
+
+      <div id="inventory-grid" class="inventory-grid">
+        <div class="loading-state">Leyendo registros de partida...</div>
+      </div>
+    </main>
+
+    <!-- Mobile Footer Info -->
+    <footer class="purah-footer">
+      <span>GLADOS RIG // LAN COMPANION</span>
+      <span id="auto-refresh-timer">Sincronización: 3s</span>
+    </footer>
+  </div>
+
+  <script src="/static/app.js?v=3.9.0"></script>
+
+  <!-- LAN / Mobile Access Modal -->
+  <div id="lan-modal" class="modal-overlay" style="display: none;" onclick="if(event.target===this) closeLanModal()">
+    <div class="modal-card" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3 class="modal-title">📱 Conectar Celular / Tablet (Wi-Fi)</h3>
+        <button class="modal-close-btn" onclick="closeLanModal()">✕</button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <p class="modal-desc" style="margin-bottom: 14px;">
+          Conecta cualquier dispositivo a la <strong>misma red Wi-Fi</strong> para usarlo como mapa o segundo monitor en vivo:
+        </p>
+
+        <!-- QR Code -->
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 16px;">
+          <div style="background: #ffffff; padding: 10px; border-radius: 8px; display: inline-block; box-shadow: 0 0 15px rgba(0,229,255,0.25);">
+            <img id="lan-qr-img" src="" alt="Código QR LAN" style="width: 160px; height: 160px; display: block; image-rendering: pixelated;">
+          </div>
+          <span style="font-size: 0.75rem; color: #88a; margin-top: 6px;">Escanea este código con la cámara de tu celular</span>
+        </div>
+
+        <!-- Full Purah Pad URL -->
+        <div style="background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.4); border-radius: 8px; padding: 12px; margin-bottom: 12px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.72rem; color: #00e5ff; font-weight: 700; letter-spacing: 1px;">PURAH PAD COMPLETO</span>
+            <button id="copy-lan-btn" class="modal-btn secondary" style="padding: 2px 10px; font-size: 0.75rem;" onclick="copyLanUrl('full')">📋 Copiar</button>
+          </div>
+          <div id="lan-url-display" style="font-family: monospace; font-size: 1.05rem; color: #fff; font-weight: bold; word-break: break-all;">
+            http://...:8080
+          </div>
+        </div>
+
+        <!-- Popout Map URL -->
+        <div style="background: rgba(255, 170, 0, 0.05); border: 1px solid rgba(255, 170, 0, 0.4); border-radius: 8px; padding: 12px; margin-bottom: 8px; text-align: left;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 0.72rem; color: #ffaa00; font-weight: 700; letter-spacing: 1px;">SOLO RADAR / MAPA EN VIVO</span>
+            <button id="copy-popout-btn" class="modal-btn secondary" style="padding: 2px 10px; font-size: 0.75rem;" onclick="copyLanUrl('popout')">📋 Copiar</button>
+          </div>
+          <div id="popout-url-display" style="font-family: monospace; font-size: 1.05rem; color: #fff; font-weight: bold; word-break: break-all;">
+            http://...:8080/popout
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <button class="modal-btn primary" onclick="closeLanModal()">Listo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Path Configuration Modal -->
+  <div id="config-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">⚙️ Configuración de Partida (Guardados)</h3>
+        <button class="modal-close-btn" onclick="closeConfigModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          Zelda Notes autodetecta tus partidas de <strong>NX2navi / Recomp</strong>. Si juegas en otra máquina o carpeta, ingresa la ruta:
+        </p>
+        <div class="form-group">
+          <label class="form-label">Ruta de Guardado de Ocarina of Time (NX2navi):</label>
+          <input type="text" id="cfg-save-path" class="form-input" placeholder="Ej: C:\Juegos\NX2navi\game\profile\save">
+          <span class="form-hint" id="cfg-detected-hint">Detección automática activa</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn secondary" onclick="resetConfigDefault()">Restablecer Automático</button>
+        <button class="modal-btn primary" onclick="saveConfigPath()">Guardar y Sincronizar</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

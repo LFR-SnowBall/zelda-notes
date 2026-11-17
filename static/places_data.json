@@ -1,0 +1,482 @@
+[
+  {
+    "id": "kokiri",
+    "name": "Bosque Kokiri",
+    "region": "Bosques",
+    "x": 59.1,
+    "y": 67.4,
+    "intro": "El pueblo donde empieza la aventura, el Bosque Kokiri, tiene en su mapa tres Skulltulas doradas y la tierra blanda de una judía mágica. De niño salen dos de las Skulltulas: la de detrás de la casa de los hermanos Sabelotodo, solo de noche, y la de la tierra blanda de la tienda, a cualquier hora y con bichos. Planta también una judía en esa misma parcela, porque de adulto te sube a una cornisa con rupias, y vuelve de noche con el Gancho a por la tercera Skulltula, en lo alto de la casa de las gemelas.",
+    "totals": {
+      "gs": 3,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 4
+    }
+  },
+  {
+    "id": "perdido",
+    "name": "Bosque Perdido",
+    "region": "Bosques",
+    "x": 69.5,
+    "y": 63.9,
+    "intro": "Casi todo lo del Bosque Perdido se consigue de niño: dos piezas de corazón con la ocarina, tres Skulltulas doradas y dos parcelas para judías mágicas. Es el laberinto que une el Bosque Kokiri con el Santuario del bosque, y las piezas son cosa de los Skull Kid: la Canción de Saria al de la flauta, a la izquierda de la entrada, y el juego de memoria de la diana, a la derecha. Lleva bichos para las dos parcelas de tierra blanda, la del puente hacia la Llanura de Hyrule y la del claro del árbol solitario, y planta una judía en cada una: de adulto y de noche, la del claro te sube a la cornisa de la tercera Skulltula.",
+    "totals": {
+      "gs": 3,
+      "hearts": 2,
+      "fairies": 0,
+      "other": 2,
+      "total": 7
+    }
+  },
+  {
+    "id": "prado",
+    "name": "Santuario del bosque",
+    "region": "Bosques",
+    "x": 77.7,
+    "y": 67.5,
+    "intro": "Una sola Skulltula dorada, y de adulto, es todo lo que guarda el Santuario del bosque, y el mapa marca dónde sale en el laberinto que lleva al Templo del Bosque. Aparece en la pared de la derecha a mitad del laberinto, tras esquivar a los Moblins y antes de la escalinata: derríbala con el Gancho, el mismo que necesitas para entrar en el templo.",
+    "totals": {
+      "gs": 1,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 0,
+      "total": 1
+    }
+  },
+  {
+    "id": "llanura",
+    "name": "Llanura de Hyrule",
+    "region": "Centro",
+    "x": 44.8,
+    "y": 62.7,
+    "intro": "El mapa de la Llanura de Hyrule marca dos piezas de corazón y dos Skulltulas doradas. Dos de ellas están bajo tierra, en grutas que se abren con una bomba o con el Martillo Megatón. En la que hay al este del puente levadizo de la Ciudadela, junto al foso, un matorral mercader te vende una pieza por 100 rupias si vas de niño y sabes la contraseña, que te cuenta de adulto el pensamiento de hada del árbol de al lado; la otra está en un cofre bajo un saliente de roca del oeste, cerca del Valle Gerudo, y hay que abrirlo de niño. De las Skulltulas, la del pino solitario del este cae rodando contra el tronco, y la de la gruta del círculo de piedras, junto al Rancho Lon Lon, pide el bumerán o el Gancho.",
+    "totals": {
+      "gs": 3,
+      "hearts": 2,
+      "fairies": 0,
+      "other": 10,
+      "total": 15
+    }
+  },
+  {
+    "id": "lonlon",
+    "name": "Rancho Lon Lon",
+    "region": "Centro",
+    "x": 38.2,
+    "y": 57.3,
+    "intro": "De niño se consigue casi todo en el Rancho Lon Lon: cuatro Skulltulas doradas, una pieza de corazón y una botella, cada una marcada en su mapa. Dos de las Skulltulas solo salen de noche y piden el bumerán, en la ventana de la casa y dentro de la torre de piedra del fondo; la tercera, en el árbol de la entrada, cae a cualquier hora rodando contra el tronco, y la cuarta sale de adulto en una caja de la gruta del sureste del rancho, si de niño has leído allí el pensamiento de hada y has derrotado a la Skulltula normal. La pieza de corazón está al fondo de la torre de piedra, tras unas cajas, y la botella es el premio del juego de los supercucos de Talon, al que antes hay que despertar en el Castillo de Hyrule con el cuco del huevo extraño.",
+    "totals": {
+      "gs": 3,
+      "hearts": 1,
+      "fairies": 0,
+      "other": 2,
+      "total": 6
+    }
+  },
+  {
+    "id": "ciudadela",
+    "name": "Ciudadela de Hyrule",
+    "region": "Castillo",
+    "x": 43.3,
+    "y": 38.5,
+    "intro": "Tres piezas de corazón, dos botellas y una Skulltula dorada: eso guarda la Ciudadela de Hyrule, con un mapa de niño y otro de adulto, porque la ciudad cambia. Casi todo es de niño: dos de las piezas salen de noche, en El Cofre del Tesoro y devolviendo a Ricardo, el perrito perdido, a su dueña, y la tercera es un premio de la Bolera Bombuchu, que no abre hasta que vences al Rey Dodongo. La Skulltula está metida en una caja de la caseta del guardia de la entrada, y las botellas son la nueva del remake, que te regala el tendero de al lado del camino al Templo del Tiempo, y la del coleccionista de poe, de adulto, por cinco grandes poe.",
+    "totals": {
+      "gs": 1,
+      "hearts": 3,
+      "fairies": 0,
+      "other": 2,
+      "total": 6
+    }
+  },
+  {
+    "id": "castillo",
+    "name": "Castillo de Hyrule",
+    "region": "Castillo",
+    "x": 42.6,
+    "y": 31.3,
+    "intro": "Entre los dos mapas del Castillo de Hyrule, sus terrenos de niño y el exterior del Castillo de Ganondorf de adulto, hay tres Skulltulas doradas y dos Grandes Hadas. De niño salen dos de las Skulltulas, la del árbol del jardín de setos y la de la gruta que abre la Canción de la tormenta junto al árbol del foso, y la Gran Hada del ataque circular, tras una roca al final del camino sin salida del este. De adulto quedan la Skulltula del arco en ruinas, que solo ves si te das la vuelta al cruzarlo, y la Gran Hada de la doble defensa, tapada por un pilar que levantan los Guantes de oro.",
+    "totals": {
+      "gs": 3,
+      "hearts": 0,
+      "fairies": 2,
+      "other": 0,
+      "total": 5
+    }
+  },
+  {
+    "id": "kakariko",
+    "name": "Aldea Kakariko",
+    "region": "Kakariko",
+    "x": 58.1,
+    "y": 44.3,
+    "intro": "La Aldea Kakariko está al pie de la Montaña de la Muerte, pasado el puente de la Llanura de Hyrule, y es uno de los lugares con más coleccionables del mapa. Cinco de sus seis Skulltulas doradas salen de niño y de noche, con la espada o el tirachinas, y la sexta, en la pared de roca pegada al tejado de la casa de Impa, de adulto, de noche y con el Gancho. Las piezas de corazón se reparten entre las dos edades, la botella te la da la criadora de cucos al devolverle los siete, y en la Casa de las Skulltulas hay una pieza más esperando a que reúnas 50 símbolos.",
+    "totals": {
+      "gs": 6,
+      "hearts": 4,
+      "fairies": 0,
+      "other": 1,
+      "total": 11
+    }
+  },
+  {
+    "id": "cementerio",
+    "name": "Cementerio",
+    "region": "Kakariko",
+    "x": 74.0,
+    "y": 38.7,
+    "intro": "El Cementerio de Kakariko tiene un mapa para cada edad, y entre los dos reúnen cuatro piezas de corazón, dos Skulltulas doradas y una judía mágica. De niño y de noche, Dampé cava por 10 rupias y de vez en cuando saca una pieza, y la tumba de cerca del Panteón real esconde otra en su cripta, que a esa edad solo se abre de noche. De adulto llegan la carrera contra el fantasma de Dampé, que da la pieza en la segunda vuelta (la primera da el Gancho), y el saliente de la pared izquierda, al que sube la judía plantada de niño. Las Skulltulas salen de noche en el muro de la entrada y, con bichos, de niño y a cualquier hora, en la tierra blanda de junto a la tumba de Dampé.",
+    "totals": {
+      "gs": 2,
+      "hearts": 4,
+      "fairies": 0,
+      "other": 3,
+      "total": 9
+    }
+  },
+  {
+    "id": "sendero",
+    "name": "Montaña de la Muerte",
+    "region": "Montaña",
+    "x": 57.7,
+    "y": 30.1,
+    "intro": "Por el sendero de la Montaña de la Muerte, de Kakariko al Cráter, el mapa marca cuatro Skulltulas doradas, una pieza de corazón, una Gran Hada y una judía mágica. De niño, quita la roca de la Cueva de los dodongos con una bomba o con la flor bomba y aprovecha la tierra blanda que queda delante: bichos para una Skulltula y una judía que de adulto sirve de atajo. La pieza de corazón está en el saliente de encima de la entrada de la cueva, y la Gran Hada de la magia y el Fuego de Din, en la cima, tras la pared agrietada de al lado de Kaepora Gaebora. De las otras tres Skulltulas, la de la pared agrietada junto a Kakariko sale a cualquier edad, y las dos de adulto y de noche están bajo rocas que hay que romper, una de ellas solo con el Martillo Megatón.",
+    "totals": {
+      "gs": 4,
+      "hearts": 1,
+      "fairies": 1,
+      "other": 2,
+      "total": 8
+    }
+  },
+  {
+    "id": "goron",
+    "name": "Ciudad Goron",
+    "region": "Montaña",
+    "x": 70.0,
+    "y": 30.1,
+    "intro": "Ciudad Goron, excavada en la Montaña de la Muerte, solo tiene tres coleccionables en su mapa: dos Skulltulas doradas y una pieza de corazón, repartidas entre las dos edades. De niño, la Skulltula del laberinto de rocas del piso superior se alcanza abriendo camino con bombas, y la pieza sale del gran jarrón giratorio del centro: enciende sus antorchas para que gire y cuela una bomba desde la tabla del piso de encima. De adulto queda la otra Skulltula, bajo un saliente de roca del techo, que solo alcanza el Gancho.",
+    "totals": {
+      "gs": 2,
+      "hearts": 1,
+      "fairies": 0,
+      "other": 0,
+      "total": 3
+    }
+  },
+  {
+    "id": "crater",
+    "name": "Cráter",
+    "region": "Montaña",
+    "x": 65.6,
+    "y": 12.4,
+    "intro": "El calor manda en el Cráter de la Montaña de la Muerte, donde el mapa marca tres piezas de corazón, dos Skulltulas doradas, una Gran Hada y una judía mágica. Se entra por la cima de la montaña o desde Ciudad Goron; de niño el calor te pone una cuenta atrás, y de adulto, con el sayo goron, no hay prisa. De niño salen la Skulltula de la caja de la entrada de la cima, la pieza que vende el matorral mercader por 100 rupias y la Skulltula de la tierra blanda del Bolero del fuego, a la que se llega tocando esa canción: planta allí también la judía. De adulto, esa planta te deja en la roca en cúpula de otra pieza, la tercera, que también se coge de niño, está en un hueco de la pared bajando por las redes de la entrada, y la Gran Hada de la doble magia espera tras unas rocas que solo rompe el Martillo Megatón.",
+    "totals": {
+      "gs": 2,
+      "hearts": 3,
+      "fairies": 1,
+      "other": 1,
+      "total": 7
+    }
+  },
+  {
+    "id": "rio",
+    "name": "Río Zora",
+    "region": "Zora",
+    "x": 58.0,
+    "y": 52.4,
+    "intro": "En la entrada del Río Zora está el vendedor de judías mágicas, y río arriba el mapa marca cuatro piezas de corazón y cuatro Skulltulas doradas. Pasa de niño las rocas de la entrada con una bomba, cómprale todas las judías que puedas y planta una en la tierra blanda de su lado. Las cuatro piezas son de niño: dos en plataformas a las que se llega planeando con un cuco (o con el bumerán, la de la cascada) y dos de las ranas del tocón, una por tocarles sus canciones y ganar su juego y otra por la Canción de la tormenta. De las Skulltulas, dos son de niño, la de la tierra blanda del vendedor, con bichos, y, de noche, la de la pared de junto a la cascada, y dos de adulto y de noche, en lo alto de las paredes y con el Gancho.",
+    "totals": {
+      "gs": 4,
+      "hearts": 4,
+      "fairies": 0,
+      "other": 1,
+      "total": 9
+    }
+  },
+  {
+    "id": "dominio",
+    "name": "Región de los zora",
+    "region": "Zora",
+    "x": 68.6,
+    "y": 47.5,
+    "intro": "Uno por edad: así se reparten los dos coleccionables de la Región de los zora, una pieza de corazón de niño y una Skulltula dorada de adulto, cada uno en su sitio del mapa. Para la pieza, enciende con un palo deku todas las antorchas de la planta baja, empezando por la del pie de la escalera, y aparecerá su cofre detrás de la cascada. De adulto, con la región congelada, la Skulltula sale de noche en lo alto de la cascada helada, y se baja con el Gancho o con una flecha.",
+    "totals": {
+      "gs": 1,
+      "hearts": 1,
+      "fairies": 0,
+      "other": 0,
+      "total": 2
+    }
+  },
+  {
+    "id": "fuente",
+    "name": "Fuente Zora",
+    "region": "Zora",
+    "x": 80.3,
+    "y": 52.2,
+    "intro": "Detrás del trono del Rey Zora, la Fuente Zora guarda dos piezas de corazón, tres Skulltulas doradas y una Gran Hada, con un mapa para cada edad. De niño es el estanque de Jabu-Jabu y de adulto, un lago helado camino de la Caverna de hielo. La Gran Hada, la del Viento de Farore, se abre a cualquier edad, tras la pared agrietada del rincón sureste, y de niño salen dos de las Skulltulas: la del pino de ese mismo rincón y, de noche y con el bumerán, la de la pared del arco hundido. De adulto, una pieza espera en el témpano más alejado y otra en el fondo, con el sayo zora y las Botas de hierro, y la tercera Skulltula sale de noche al otro lado de una cueva tapada por dos bloques con marcas zora, que levantan los Guantes de plata.",
+    "totals": {
+      "gs": 3,
+      "hearts": 2,
+      "fairies": 1,
+      "other": 0,
+      "total": 6
+    }
+  },
+  {
+    "id": "lago",
+    "name": "Lago Hylia",
+    "region": "Lago",
+    "x": 42.7,
+    "y": 77.1,
+    "intro": "El Lago Hylia es de las zonas más llenas del mapa: cinco Skulltulas doradas, tres piezas de corazón, una botella y una judía mágica, en las dos edades. De niño, la tierra blanda pegada al laboratorio da una Skulltula con bichos y una judía que de adulto te sube al tejado, donde está una de las piezas; otra te la da el dueño del estanque de pesca por un pez de más de 50 cm, y la tercera, el investigador del laboratorio, si buceas hasta el fondo de su piscina con la Escama de oro. La botella con la carta de Ruto está en el fondo del lago, junto al túnel de la Región de los zora, y pide la Escama de plata. De las Skulltulas, tres son de niño y dos de adulto: la de la caja del fondo de la piscina, con las Botas de hierro, y la de la copa del gran árbol de la isla, de noche y con el Supergancho.",
+    "totals": {
+      "gs": 5,
+      "hearts": 3,
+      "fairies": 0,
+      "other": 3,
+      "total": 11
+    }
+  },
+  {
+    "id": "valle",
+    "name": "Valle Gerudo",
+    "region": "Oeste",
+    "x": 22.3,
+    "y": 56.2,
+    "intro": "Para llegar a la Fortaleza gerudo hay que cruzar el Valle Gerudo, y su mapa marca cuatro Skulltulas doradas, dos piezas de corazón y una judía mágica. Una de las piezas está detrás de la cascada grande, a la que se llega nadando, y la otra, en un cofre de un saliente del cañón, se alcanza de niño planeando con el cuco de junto al puente. En la plataforma de la vaca, al pie de la cascada, la tierra blanda da una Skulltula con bichos y una judía que de adulto también te acerca a la pieza de la cascada. Las otras tres Skulltulas salen de noche: la del chorro de la pasarela, de niño y con el bumerán, y las de la tienda de los carpinteros y el arco de roca de enfrente, de adulto y con el Gancho.",
+    "totals": {
+      "gs": 4,
+      "hearts": 2,
+      "fairies": 0,
+      "other": 1,
+      "total": 7
+    }
+  },
+  {
+    "id": "fortaleza",
+    "name": "Fortaleza gerudo",
+    "region": "Oeste",
+    "x": 20.7,
+    "y": 40.8,
+    "intro": "Todo lo que guarda la Fortaleza gerudo es de adulto: dos piezas de corazón y dos Skulltulas doradas, que el mapa sitúa en el campo de tiro y en los tejados. Rescatar a los cuatro carpinteros te da el Pase gerudo, que abre el campo de tiro con arco a caballo: de día, llega a 1000 puntos a lomos de Epona para ganar una pieza, y vuelve de noche con el Gancho a por la Skulltula de la diana del fondo. Por la salida alta de la cocina se sube a los tejados, donde de noche está la otra Skulltula y, en la azotea más alta, el cofre de la segunda pieza, al que llegas con el Supergancho desde el saliente de roca que queda por encima.",
+    "totals": {
+      "gs": 2,
+      "hearts": 2,
+      "fairies": 0,
+      "other": 0,
+      "total": 4
+    }
+  },
+  {
+    "id": "desierto",
+    "name": "Desierto encantado",
+    "region": "Oeste",
+    "x": 15.5,
+    "y": 34.7,
+    "intro": "El Desierto encantado solo guarda una Skulltula dorada, de adulto, en la sala de debajo del monumento de piedra del camino al Coloso del desierto. Para cruzarlo, pasa el río de arena con las Botas voladoras o el Supergancho y sigue las banderolas; en el monumento, entra por el hueco entre las columnas, baja por la escalera de mano y derriba la Skulltula con la espada desde el altar.",
+    "totals": {
+      "gs": 1,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 0,
+      "total": 1
+    }
+  },
+  {
+    "id": "coloso",
+    "name": "Coloso del desierto",
+    "region": "Oeste",
+    "x": 23.1,
+    "y": 28.7,
+    "intro": "Con el Réquiem del espíritu llegas de niño al Coloso del desierto, cuyo mapa marca tres Skulltulas doradas, una pieza de corazón, una Gran Hada y una judía mágica. De adulto se llega cruzando el Desierto encantado. Ve de niño para soltar bichos en la tierra blanda de la entrada del Templo del Espíritu, que da una Skulltula, y plantar allí la judía: de adulto, su planta te lleva por la cima de la gran roca, donde de noche está otra Skulltula, hasta el arco de piedra de la pieza de corazón. La tercera Skulltula sale de noche en lo alto de la pared de roca a la derecha del Templo del Espíritu, con el Gancho, y la Gran Hada del Amor de Nayru, tras la pared agrietada del norte del oasis, se abre en las dos edades con una bomba o un bombuchu.",
+    "totals": {
+      "gs": 3,
+      "hearts": 1,
+      "fairies": 1,
+      "other": 2,
+      "total": 7
+    }
+  },
+  {
+    "id": "deku",
+    "name": "Gran Árbol Deku",
+    "region": "Bosques",
+    "x": 68.3,
+    "y": 76.6,
+    "intro": "El Gran Árbol Deku es la primera mazmorra del juego y se entra de niño, nada más salir del Bosque Kokiri con la espada y el escudo. El mapa recorre sus cinco plantas, de arriba al segundo sótano. Sus cuatro Skulltulas doradas caen con la espada o con el tirachinas que encuentras dentro, y en el remake las cuatro se cogen en esta primera visita: la de la sala del fondo del sótano ya no pide bombas ni bumerán, basta con quemar la telaraña con un palo deku. La reina Gohma, en el segundo sótano, deja el contenedor de corazón: aturde su ojo con el tirachinas y golpéalo con la espada.",
+    "totals": {
+      "gs": 4,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 5
+    }
+  },
+  {
+    "id": "dodongos",
+    "name": "Cueva de los dodongos",
+    "region": "Montaña",
+    "x": 52.5,
+    "y": 22.1,
+    "intro": "La Cueva de los dodongos está en el camino de la Montaña de la Muerte y se abre de niño volando la roca de la entrada con una flor bomba y el Brazalete de los goron. Su mapa tiene las dos plantas de la cueva. De sus cinco Skulltulas doradas, cuatro caen en la primera visita, de niño; la del saliente del espantapájaros pide volver de adulto con el Gancho y la Canción del espantapájaros, o con el Supergancho. El Rey Dodongo deja el contenedor de corazón: una bomba en la boca y, después, la espada.",
+    "totals": {
+      "gs": 5,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 6
+    }
+  },
+  {
+    "id": "jabu",
+    "name": "Tripa de Jabu-Jabu",
+    "region": "Zora",
+    "x": 76.7,
+    "y": 45.1,
+    "intro": "A la Tripa de Jabu-Jabu se entra de niño por la Fuente Zora, dejando un pez delante de la boca de Jabu-Jabu, y dentro casi todo gira en torno al bumerán que consigues al principio. En el mapa tienes sus tres plantas, sótano incluido. La primera Skulltula dorada cae con la espada en la sala del interruptor del agua; las otras tres, con el bumerán, dos de ellas juntas en el sótano de la gran sala de los agujeros, apuntando a mano porque no se pueden fijar. Barinade deja el contenedor de corazón, también a golpe de bumerán.",
+    "totals": {
+      "gs": 4,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 5
+    }
+  },
+  {
+    "id": "bosque",
+    "name": "Templo del Bosque",
+    "region": "Bosques",
+    "x": 86.6,
+    "y": 60.4,
+    "intro": "El Templo del Bosque es la primera mazmorra de adulto: se entra desde el Santuario del bosque con el Gancho, y ese mismo Gancho es el que derriba sus cinco Skulltulas doradas y te acerca los símbolos. El mapa tiene sus cinco plantas. Conviene cogerlas según avanzas, porque cada una cae en una sala del camino: la entrada, el vestíbulo, los dos patios y la sala giratoria del sótano, justo antes del jefe. El contenedor de corazón lo deja Ganon fantasma, con el arco o el Gancho a mano.",
+    "totals": {
+      "gs": 5,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 6
+    }
+  },
+  {
+    "id": "fuego",
+    "name": "Templo del Fuego",
+    "region": "Montaña",
+    "x": 62.5,
+    "y": 19.5,
+    "intro": "Al Templo del Fuego se llega de adulto desde el Cráter de la Montaña de la Muerte, con el sayo goron puesto para aguantar el calor. Su mapa tiene cinco plantas, de la baja a la cuarta. Sus cinco Skulltulas doradas piden más que la espada: la Canción del tiempo, bombas, el Gancho y, para dos de ellas, la Canción del espantapájaros que se compone de niño y de adulto en el Lago Hylia. La de detrás de la estatua del vestíbulo y el contenedor de corazón de Volvagia esperan al Martillo Megatón, así que déjalas para el final.",
+    "totals": {
+      "gs": 5,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 6
+    }
+  },
+  {
+    "id": "agua",
+    "name": "Templo del Agua",
+    "region": "Lago",
+    "x": 40.5,
+    "y": 91.0,
+    "intro": "El Templo del Agua está en el fondo del Lago Hylia y se entra de adulto con las Botas de hierro y el sayo zora, cambiando el nivel del agua con la Nana de Zelda. En su mapa están las cuatro plantas, del sótano a la segunda. De sus cinco Skulltulas doradas, dos se pueden coger antes de vencer a Link oscuro, la de junto a la reja del sótano y la de tras la pared agrietada bajo el agua; las otras tres piden el Supergancho que deja ese combate, así que lo cómodo es conseguirlo primero y hacer una pasada por el pilar central, el río de los remolinos y la cascada de las rocas. Morpha deja el contenedor de corazón al final.",
+    "totals": {
+      "gs": 5,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 6
+    }
+  },
+  {
+    "id": "sombra",
+    "name": "Templo de las Sombras",
+    "region": "Kakariko",
+    "x": 80.1,
+    "y": 31.8,
+    "intro": "El Templo de las Sombras, bajo el Cementerio de Kakariko, se abre de adulto con el Nocturno de la sombra y el Fuego de Din, y dentro las Gafas de la verdad y las Botas voladoras son imprescindibles desde el principio. El mapa tiene sus cuatro sótanos. Sus cinco Skulltulas doradas van saliendo en el orden del recorrido, en la sala de las guadañas invisibles, en la de los pinchos del techo, en el foso del pasillo de los ventiladores, en la cornisa de la sala del barco y dentro de las calaveras gigantes; dos caen con el Gancho, la del barco pide el Supergancho y la Canción del espantapájaros, y la de las calaveras, bombas. El contenedor de corazón lo deja Bongo Bongo, con flechas o Gancho y las Gafas activas.",
+    "totals": {
+      "gs": 5,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 2,
+      "total": 7
+    }
+  },
+  {
+    "id": "espiritu",
+    "name": "Templo del Espíritu",
+    "region": "Oeste",
+    "x": 15.6,
+    "y": 24.0,
+    "intro": "El Templo del Espíritu, en el Coloso del desierto, se recorre dos veces: primero de niño, colándote por el agujero pequeño tras hablar con Nabooru, y después de adulto, apartando el gran bloque del vestíbulo con los Guantes de plata. Su mapa tiene cuatro plantas, de la baja a la tercera. Tres de sus cinco Skulltulas doradas se cogen ya en la parte de niño, dos con el bumerán o el tirachinas y una con la espada, y las otras dos, en la parte adulta, piden la Canción del tiempo y el Supergancho con la Canción del espantapájaros. Para el contenedor de corazón de Birova hace falta el Escudo espejo, que se consigue en el propio templo.",
+    "totals": {
+      "gs": 5,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 6
+    }
+  },
+  {
+    "id": "pozo",
+    "name": "Fondo del pozo",
+    "region": "Kakariko",
+    "x": 66.1,
+    "y": 37.4,
+    "intro": "Al Fondo del pozo se entra de niño, cuando vacías el pozo de la Aldea Kakariko tocando la Canción de la tormenta en el molino. Dentro, su mapa de dos plantas marca tres Skulltulas doradas, y para todas hacen falta el bumerán y las Gafas de la verdad, que se ganan en el sótano. Sin las Gafas no se ven las paredes falsas, los caminos invisibles ni las trampillas; las tres Skulltulas esperan tras puertas con candado, dos en la zona central y una en la sala del Like Like.",
+    "totals": {
+      "gs": 3,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 4
+    }
+  },
+  {
+    "id": "hielo",
+    "name": "Caverna de hielo",
+    "region": "Zora",
+    "x": 86.4,
+    "y": 45.4,
+    "intro": "A la Caverna de hielo se entra de adulto por la Fuente Zora helada, siguiendo los témpanos hasta la cueva del fondo, y es donde se consiguen las Botas de hierro. Su mapa marca tres Skulltulas doradas, y las tres caen con el Gancho. Una está en la sala de la cuchilla giratoria, entre las estalagmitas; para las otras dos, reúne las rupias plateadas de esa sala para abrir la sala del mapa, llena allí una botella de fuego azul y derrite con él los dos muros de hielo rojo de la sala de la cuchilla: detrás están la sala de la brújula y la del bloque de hielo deslizante.",
+    "totals": {
+      "gs": 3,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 1,
+      "total": 4
+    }
+  },
+  {
+    "id": "gerudo",
+    "name": "Centro de entrenamiento gerudo",
+    "region": "Oeste",
+    "x": 26.1,
+    "y": 44.0,
+    "intro": "El Centro de entrenamiento gerudo es la mazmorra de pruebas de la Fortaleza gerudo, y se entra de adulto con el Pase gerudo. No guarda ninguna Skulltula dorada ni pieza de corazón, así que en este mapa no tiene coleccionables que marcar; su recompensa es la Flecha de hielo.",
+    "totals": {
+      "gs": 0,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 0,
+      "total": 0
+    }
+  },
+  {
+    "id": "ganon",
+    "name": "Castillo de Ganondorf",
+    "region": "Castillo",
+    "x": 40.9,
+    "y": 23.3,
+    "intro": "El Castillo de Ganondorf se alza de adulto donde estaba el Castillo de Hyrule, y es la última mazmorra del juego. No guarda ninguna Skulltula dorada ni pieza de corazón, así que en este mapa no tiene coleccionables que marcar. Lo que sí hay fuera, junto al camino de entrada, son la Gran Hada de la doble defensa y una Skulltula dorada en un arco en ruinas: están en el mapa del Castillo de Hyrule.",
+    "totals": {
+      "gs": 0,
+      "hearts": 0,
+      "fairies": 0,
+      "other": 0,
+      "total": 0
+    }
+  }
+]

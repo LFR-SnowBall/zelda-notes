@@ -1,0 +1,1132 @@
+{
+  "deku": {
+    "place_id": "deku",
+    "scene_name": "InsideTheDekuTree",
+    "name": "Gran Árbol Deku",
+    "bounds_3d": {
+      "min_x": -83.395,
+      "max_x": 44.805,
+      "min_y": 40.0,
+      "max_y": 139.779,
+      "min_z": -20.18,
+      "max_z": 90.797
+    },
+    "floors": {
+      "3F": {
+        "scale_x": 1.6704,
+        "offset_x": 79.67,
+        "scale_z": 3.3203,
+        "offset_z": 43.39,
+        "y_range": [
+          119.8,
+          189.8
+        ]
+      },
+      "2F": {
+        "scale_x": 2.0283,
+        "offset_x": 80.84,
+        "scale_z": 4.8063,
+        "offset_z": 34.89,
+        "y_range": [
+          99.9,
+          119.8
+        ]
+      },
+      "1F": {
+        "scale_x": 1.038,
+        "offset_x": 87.18,
+        "scale_z": 1.7046,
+        "offset_z": 15.06,
+        "y_range": [
+          79.9,
+          99.9
+        ]
+      },
+      "S1": {
+        "scale_x": 2.7346,
+        "offset_x": 118.97,
+        "scale_z": 1.6494,
+        "offset_z": 23.89,
+        "y_range": [
+          60.0,
+          79.9
+        ]
+      },
+      "S2": {
+        "scale_x": 1.2642,
+        "offset_x": 52.49,
+        "scale_z": 1.3635,
+        "offset_z": 2.08,
+        "y_range": [
+          -10.0,
+          60.0
+        ]
+      }
+    }
+  },
+  "dodongos": {
+    "place_id": "dodongos",
+    "scene_name": "DodongoCavern",
+    "name": "Cueva de los dodongos",
+    "bounds_3d": {
+      "min_x": -61.49,
+      "max_x": 123.742,
+      "min_y": -2.5,
+      "max_y": 127.775,
+      "min_z": -112.7,
+      "max_z": 70.0
+    },
+    "floors": {
+      "2F": {
+        "scale_x": 0.5809,
+        "offset_x": 30.54,
+        "scale_z": 0.7183,
+        "offset_z": 76.88,
+        "y_range": [
+          62.6,
+          177.8
+        ]
+      },
+      "1F": {
+        "scale_x": 0.4995,
+        "offset_x": 32.71,
+        "scale_z": 0.4874,
+        "offset_z": 56.93,
+        "y_range": [
+          -52.5,
+          62.6
+        ]
+      }
+    }
+  },
+  "jabu": {
+    "place_id": "jabu",
+    "scene_name": "InsideJabuJabuBelly",
+    "name": "Tripa de Jabu-Jabu",
+    "bounds_3d": {
+      "min_x": -41.306,
+      "max_x": 58.37,
+      "min_y": 63.016,
+      "max_y": 121.83,
+      "min_z": -198.978,
+      "max_z": 21.209
+    },
+    "floors": {
+      "1F": {
+        "y_range": [
+          85.0,
+          98.0
+        ],
+        "scale_x": 1.15,
+        "offset_x": 49.1,
+        "scale_z": 0.475,
+        "offset_z": 96.0
+      },
+      "2F": {
+        "y_range": [
+          98.0,
+          150.0
+        ],
+        "scale_x": 0.886,
+        "offset_x": 47.7,
+        "scale_z": 1.06,
+        "offset_z": 136.9
+      },
+      "S1": {
+        "y_range": [
+          -100.0,
+          85.0
+        ],
+        "scale_x": 1.01,
+        "offset_x": 48.3,
+        "scale_z": 1.32,
+        "offset_z": 131.2
+      }
+    }
+  },
+  "bosque": {
+    "place_id": "bosque",
+    "scene_name": "ForestTemple",
+    "name": "Templo del Bosque",
+    "bounds_3d": {
+      "min_x": -95.346,
+      "max_x": 76.894,
+      "min_y": 40.534,
+      "max_y": 168.324,
+      "min_z": -97.965,
+      "max_z": 117.451
+    },
+    "floors": {
+      "3F": {
+        "scale_x": 0.5366,
+        "offset_x": 53.16,
+        "scale_z": 0.4148,
+        "offset_z": 42.64,
+        "y_range": [
+          142.8,
+          218.3
+        ]
+      },
+      "2F": {
+        "scale_x": 0.6693,
+        "offset_x": 55.88,
+        "scale_z": 0.6999,
+        "offset_z": 49.46,
+        "y_range": [
+          117.2,
+          142.8
+        ]
+      },
+      "1F": {
+        "scale_x": 0.6624,
+        "offset_x": 55.32,
+        "scale_z": 0.8382,
+        "offset_z": 53.63,
+        "y_range": [
+          91.7,
+          117.2
+        ]
+      },
+      "S1": {
+        "scale_x": 9.7353,
+        "offset_x": 93.9,
+        "scale_z": 0.8515,
+        "offset_z": 59.93,
+        "y_range": [
+          66.1,
+          91.7
+        ]
+      },
+      "S2": {
+        "scale_x": 2.2172,
+        "offset_x": 37.19,
+        "scale_z": 1.5121,
+        "offset_z": 64.32,
+        "y_range": [
+          -9.5,
+          66.1
+        ]
+      }
+    }
+  },
+  "fuego": {
+    "place_id": "fuego",
+    "scene_name": "FireTemple",
+    "name": "Templo del Fuego",
+    "bounds_3d": {
+      "min_x": -118.909,
+      "max_x": 117.0,
+      "min_y": 90.0,
+      "max_y": 207.0,
+      "min_z": -58.12,
+      "max_z": 62.573
+    },
+    "floors": {
+      "5F": {
+        "scale_x": 0.8394,
+        "offset_x": 51.47,
+        "scale_z": 2.981,
+        "offset_z": 60.87,
+        "y_range": [
+          183.6,
+          257.0
+        ]
+      },
+      "4F": {
+        "scale_x": 0.7913,
+        "offset_x": 60.1,
+        "scale_z": 1.9531,
+        "offset_z": 56.55,
+        "y_range": [
+          160.2,
+          183.6
+        ]
+      },
+      "3F": {
+        "scale_x": 0.646,
+        "offset_x": 43.53,
+        "scale_z": 1.1217,
+        "offset_z": 52.15,
+        "y_range": [
+          136.8,
+          160.2
+        ]
+      },
+      "2F": {
+        "scale_x": 2.2665,
+        "offset_x": -104.56,
+        "scale_z": 1.3093,
+        "offset_z": 63.54,
+        "y_range": [
+          113.4,
+          136.8
+        ]
+      },
+      "1F": {
+        "scale_x": 0.4811,
+        "offset_x": 40.61,
+        "scale_z": 0.906,
+        "offset_z": 45.89,
+        "y_range": [
+          40.0,
+          113.4
+        ]
+      }
+    }
+  },
+  "agua": {
+    "place_id": "agua",
+    "scene_name": "WaterTemple",
+    "name": "Templo del Agua",
+    "bounds_3d": {
+      "min_x": -102.182,
+      "max_x": 56.98,
+      "min_y": 44.7,
+      "max_y": 170.0,
+      "min_z": -125.68,
+      "max_z": 68.0
+    },
+    "floors": {
+      "3F": {
+        "scale_x": 0.5726,
+        "offset_x": 60.51,
+        "scale_z": 0.4609,
+        "offset_z": 59.93,
+        "y_range": [
+          138.7,
+          220.0
+        ]
+      },
+      "2F": {
+        "scale_x": 0.681,
+        "offset_x": 58.99,
+        "scale_z": 0.8218,
+        "offset_z": 77.45,
+        "y_range": [
+          107.3,
+          138.7
+        ]
+      },
+      "1F": {
+        "scale_x": 1.1848,
+        "offset_x": 50.68,
+        "scale_z": 0.7612,
+        "offset_z": 79.21,
+        "y_range": [
+          76.0,
+          107.4
+        ]
+      },
+      "S1": {
+        "scale_x": 0.5795,
+        "offset_x": 61.21,
+        "scale_z": 0.4731,
+        "offset_z": 61.46,
+        "y_range": [
+          -5.3,
+          76.0
+        ]
+      }
+    }
+  },
+  "sombra": {
+    "place_id": "sombra",
+    "scene_name": "ShadowTemple",
+    "name": "Templo de las Sombras",
+    "bounds_3d": {
+      "min_x": -231.327,
+      "max_x": 184.883,
+      "min_y": -50.0,
+      "max_y": 115.336,
+      "min_z": -88.1,
+      "max_z": 111.48
+    },
+    "floors": {
+      "S1": {
+        "scale_x": 0.5097,
+        "offset_x": 33.69,
+        "scale_z": 1.5038,
+        "offset_z": 40.71,
+        "y_range": [
+          74.0,
+          165.3
+        ]
+      },
+      "S2": {
+        "scale_x": 0.2128,
+        "offset_x": 50.74,
+        "scale_z": 0.5638,
+        "offset_z": 37.02,
+        "y_range": [
+          32.7,
+          74.0
+        ]
+      },
+      "S3": {
+        "scale_x": 0.2218,
+        "offset_x": 53.31,
+        "scale_z": 0.4586,
+        "offset_z": 42.4,
+        "y_range": [
+          -8.7,
+          32.7
+        ]
+      },
+      "S4": {
+        "scale_x": 0.2223,
+        "offset_x": 53.42,
+        "scale_z": 0.4254,
+        "offset_z": 39.48,
+        "y_range": [
+          -100.0,
+          -8.7
+        ]
+      }
+    }
+  },
+  "espiritu": {
+    "place_id": "espiritu",
+    "scene_name": "SpiritTemple",
+    "name": "Templo del Espíritu",
+    "bounds_3d": {
+      "min_x": -66.91,
+      "max_x": 67.82,
+      "min_y": 25.0,
+      "max_y": 176.295,
+      "min_z": -195.877,
+      "max_z": 67.93
+    },
+    "floors": {
+      "4F": {
+        "scale_x": 1.7928,
+        "offset_x": 39.99,
+        "scale_z": 0.7533,
+        "offset_z": 122.96,
+        "y_range": [
+          138.5,
+          226.3
+        ]
+      },
+      "3F": {
+        "scale_x": 0.8229,
+        "offset_x": 48.47,
+        "scale_z": 0.4881,
+        "offset_z": 60.41,
+        "y_range": [
+          100.6,
+          138.5
+        ]
+      },
+      "2F": {
+        "scale_x": 1.89,
+        "offset_x": 2.0,
+        "scale_z": 1.0953,
+        "offset_z": 79.05,
+        "y_range": [
+          62.8,
+          100.6
+        ]
+      },
+      "1F": {
+        "scale_x": 0.6856,
+        "offset_x": 47.87,
+        "scale_z": 0.3318,
+        "offset_z": 66.99,
+        "y_range": [
+          -25.0,
+          62.8
+        ]
+      }
+    }
+  },
+  "pozo": {
+    "place_id": "pozo",
+    "scene_name": "BottomOfTheWell",
+    "name": "Fondo del pozo",
+    "bounds_3d": {
+      "min_x": -63.22,
+      "max_x": 34.197,
+      "min_y": 76.829,
+      "max_y": 137.441,
+      "min_z": -110.686,
+      "max_z": 63.076
+    },
+    "floors": {
+      "S1": {
+        "scale_x": 0.9221,
+        "offset_x": 60.3,
+        "scale_z": 0.5155,
+        "offset_z": 59.06,
+        "y_range": [
+          107.1,
+          187.4
+        ]
+      },
+      "S2": {
+        "scale_x": 1.0278,
+        "offset_x": 57.6,
+        "scale_z": 0.7347,
+        "offset_z": 67.76,
+        "y_range": [
+          26.8,
+          107.1
+        ]
+      }
+    }
+  },
+  "hielo": {
+    "place_id": "hielo",
+    "scene_name": "IceCavern",
+    "name": "Caverna de hielo",
+    "bounds_3d": {
+      "min_x": -100.58,
+      "max_x": 92.634,
+      "min_y": 63.125,
+      "max_y": 134.115,
+      "min_z": -87.188,
+      "max_z": 123.105
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 0.702,
+        "offset_x": 34.5,
+        "scale_z": 2.0961,
+        "offset_z": 36.72,
+        "y_range": [
+          13.125,
+          184.115
+        ]
+      },
+      "default": {
+        "scale_x": 0.702,
+        "offset_x": 34.5,
+        "scale_z": 2.0961,
+        "offset_z": 36.72,
+        "y_range": [
+          13.125,
+          184.115
+        ]
+      }
+    }
+  },
+  "kokiri": {
+    "place_id": "kokiri",
+    "scene_name": "KokiriForest",
+    "name": "Bosque Kokiri",
+    "bounds_3d": {
+      "min_x": -236.794,
+      "max_x": 269.677,
+      "min_y": -28.0,
+      "max_y": 180.664,
+      "min_z": -239.848,
+      "max_z": 215.744
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 0.4523,
+        "offset_x": 56.51,
+        "scale_z": 1.3009,
+        "offset_z": 65.2,
+        "y_range": [
+          -78.0,
+          230.664
+        ]
+      },
+      "default": {
+        "scale_x": 0.4523,
+        "offset_x": 56.51,
+        "scale_z": 1.3009,
+        "offset_z": 65.2,
+        "y_range": [
+          -78.0,
+          230.664
+        ]
+      }
+    }
+  },
+  "perdido": {
+    "place_id": "perdido",
+    "scene_name": "LostWood",
+    "name": "Bosque Perdido",
+    "bounds_3d": {
+      "min_x": -132.339,
+      "max_x": 340.272,
+      "min_y": 75.79,
+      "max_y": 160.839,
+      "min_z": -121.978,
+      "max_z": 303.603
+    },
+    "floors": {
+      "default": {
+        "scale_x": 0.1693,
+        "offset_x": 32.4,
+        "scale_z": 0.188,
+        "offset_z": 32.93,
+        "y_range": [
+          65.79,
+          170.839
+        ]
+      }
+    }
+  },
+  "prado": {
+    "place_id": "prado",
+    "scene_name": "SacredForestMeadow",
+    "name": "Santuario del bosque",
+    "bounds_3d": {
+      "min_x": -168.804,
+      "max_x": 146.241,
+      "min_y": 73.594,
+      "max_y": 184.821,
+      "min_z": -228.338,
+      "max_z": 204.921
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 4.0633,
+        "offset_x": 47.17,
+        "scale_z": 0.5807,
+        "offset_z": 60.69,
+        "y_range": [
+          23.593999999999994,
+          234.821
+        ]
+      },
+      "default": {
+        "scale_x": 4.0633,
+        "offset_x": 47.17,
+        "scale_z": 0.5807,
+        "offset_z": 60.69,
+        "y_range": [
+          23.593999999999994,
+          234.821
+        ]
+      }
+    }
+  },
+  "llanura": {
+    "place_id": "llanura",
+    "scene_name": "HyruleField",
+    "name": "Llanura de Hyrule",
+    "bounds_3d": {
+      "min_x": -2098.977,
+      "max_x": 1723.453,
+      "min_y": -57.0,
+      "max_y": 552.207,
+      "min_z": -1801.747,
+      "max_z": 2393.806
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 0.0837,
+        "offset_x": 26.76,
+        "scale_z": 0.0965,
+        "offset_z": 35.25,
+        "y_range": [
+          -107.0,
+          602.207
+        ]
+      },
+      "default": {
+        "scale_x": 0.0837,
+        "offset_x": 26.76,
+        "scale_z": 0.0965,
+        "offset_z": 35.25,
+        "y_range": [
+          -107.0,
+          602.207
+        ]
+      }
+    }
+  },
+  "ciudadela": {
+    "place_id": "ciudadela",
+    "scene_name": "Market",
+    "name": "Ciudadela de Hyrule",
+    "bounds_3d": {
+      "min_x": -134.93,
+      "max_x": 1900.0,
+      "min_y": 0.104,
+      "max_y": 417.741,
+      "min_z": -1200.0,
+      "max_z": 159.856
+    },
+    "floors": {
+      "nino": {
+        "scale_x": 0.0454,
+        "offset_x": 8.13,
+        "scale_z": 0.0653,
+        "offset_z": 80.36,
+        "y_range": [
+          208.9,
+          467.7
+        ]
+      },
+      "adulto": {
+        "scale_x": 0.3432,
+        "offset_x": 44.69,
+        "scale_z": 0.9497,
+        "offset_z": 34.29,
+        "y_range": [
+          -49.9,
+          208.9
+        ]
+      }
+    }
+  },
+  "castillo": {
+    "place_id": "castillo",
+    "scene_name": "HyruleCastle",
+    "name": "Castillo de Hyrule",
+    "bounds_3d": {
+      "min_x": -4025.593,
+      "max_x": 2501.942,
+      "min_y": -50.39,
+      "max_y": 499.726,
+      "min_z": -2148.732,
+      "max_z": 4464.73
+    },
+    "floors": {
+      "nino": {
+        "scale_x": 0.0138,
+        "offset_x": 57.55,
+        "scale_z": 0.0137,
+        "offset_z": 31.44,
+        "y_range": [
+          224.7,
+          549.7
+        ]
+      },
+      "adulto": {
+        "scale_x": 1.0622,
+        "offset_x": 31.55,
+        "scale_z": 0.3563,
+        "offset_z": 99.27,
+        "y_range": [
+          -100.4,
+          224.7
+        ]
+      }
+    }
+  },
+  "kakariko": {
+    "place_id": "kakariko",
+    "scene_name": "KakarikoVillage",
+    "name": "Aldea Kakariko",
+    "bounds_3d": {
+      "min_x": -4747.696,
+      "max_x": 1352.472,
+      "min_y": -665.352,
+      "max_y": 1142.614,
+      "min_z": -2316.59,
+      "max_z": 3575.615
+    },
+    "floors": {
+      "nino": {
+        "scale_x": 0.0146,
+        "offset_x": 71.32,
+        "scale_z": 0.0156,
+        "offset_z": 38.14,
+        "y_range": [
+          238.6,
+          1192.6
+        ]
+      },
+      "adulto": {
+        "scale_x": 0.6739,
+        "offset_x": 82.93,
+        "scale_z": 0.7076,
+        "offset_z": 12.26,
+        "y_range": [
+          -715.4,
+          238.6
+        ]
+      }
+    }
+  },
+  "cementerio": {
+    "place_id": "cementerio",
+    "scene_name": "Graveyard",
+    "name": "Cementerio",
+    "bounds_3d": {
+      "min_x": -351.917,
+      "max_x": 437.099,
+      "min_y": -10.0,
+      "max_y": 1021.158,
+      "min_z": -853.966,
+      "max_z": 135.304
+    },
+    "floors": {
+      "nino": {
+        "scale_x": 0.1173,
+        "offset_x": 43.28,
+        "scale_z": 0.0858,
+        "offset_z": 75.27,
+        "y_range": [
+          505.6,
+          1071.2
+        ]
+      },
+      "adulto": {
+        "scale_x": 0.6902,
+        "offset_x": 15.96,
+        "scale_z": 0.9445,
+        "offset_z": 13.52,
+        "y_range": [
+          -60.0,
+          505.6
+        ]
+      }
+    }
+  },
+  "sendero": {
+    "place_id": "sendero",
+    "scene_name": "DeathMountainTrail",
+    "name": "Montaña de la Muerte",
+    "bounds_3d": {
+      "min_x": -2582.093,
+      "max_x": 2476.353,
+      "min_y": -215.665,
+      "max_y": 349.198,
+      "min_z": -617.701,
+      "max_z": 4749.936
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 1.0991,
+        "offset_x": 58.27,
+        "scale_z": 0.5076,
+        "offset_z": 71.83,
+        "y_range": [
+          -265.66499999999996,
+          399.198
+        ]
+      },
+      "default": {
+        "scale_x": 1.0991,
+        "offset_x": 58.27,
+        "scale_z": 0.5076,
+        "offset_z": 71.83,
+        "y_range": [
+          -265.66499999999996,
+          399.198
+        ]
+      }
+    }
+  },
+  "goron": {
+    "place_id": "goron",
+    "scene_name": "GoronCity",
+    "name": "Ciudad Goron",
+    "bounds_3d": {
+      "min_x": -58.597,
+      "max_x": 40.243,
+      "min_y": 50.0,
+      "max_y": 129.5,
+      "min_z": -61.476,
+      "max_z": 64.671
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 1.0907,
+        "offset_x": 54.63,
+        "scale_z": 1.241,
+        "offset_z": 53.81,
+        "y_range": [
+          0.0,
+          179.5
+        ]
+      },
+      "default": {
+        "scale_x": 1.0907,
+        "offset_x": 54.63,
+        "scale_z": 1.241,
+        "offset_z": 53.81,
+        "y_range": [
+          0.0,
+          179.5
+        ]
+      }
+    }
+  },
+  "crater": {
+    "place_id": "crater",
+    "scene_name": "DeathMountainCrater",
+    "name": "Cráter",
+    "bounds_3d": {
+      "min_x": -138.168,
+      "max_x": 51.232,
+      "min_y": 65.73,
+      "max_y": 159.369,
+      "min_z": -58.506,
+      "max_z": 93.115
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 1.7641,
+        "offset_x": 42.57,
+        "scale_z": 1.5672,
+        "offset_z": 15.66,
+        "y_range": [
+          15.730000000000004,
+          209.369
+        ]
+      },
+      "default": {
+        "scale_x": 1.7641,
+        "offset_x": 42.57,
+        "scale_z": 1.5672,
+        "offset_z": 15.66,
+        "y_range": [
+          15.730000000000004,
+          209.369
+        ]
+      }
+    }
+  },
+  "rio": {
+    "place_id": "rio",
+    "scene_name": "ZoraRiver",
+    "name": "Río Zora",
+    "bounds_3d": {
+      "min_x": -577.968,
+      "max_x": 212.025,
+      "min_y": 69.654,
+      "max_y": 314.995,
+      "min_z": -112.031,
+      "max_z": 304.849
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 0.4856,
+        "offset_x": 37.54,
+        "scale_z": 1.1607,
+        "offset_z": 73.66,
+        "y_range": [
+          19.653999999999996,
+          364.995
+        ]
+      },
+      "default": {
+        "scale_x": 0.4856,
+        "offset_x": 37.54,
+        "scale_z": 1.1607,
+        "offset_z": 73.66,
+        "y_range": [
+          19.653999999999996,
+          364.995
+        ]
+      }
+    }
+  },
+  "dominio": {
+    "place_id": "dominio",
+    "scene_name": "ZoraDomain",
+    "name": "Región de los zora",
+    "bounds_3d": {
+      "min_x": -32.911,
+      "max_x": 135.147,
+      "min_y": -0.7,
+      "max_y": 146.967,
+      "min_z": -67.87,
+      "max_z": 34.743
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 0.9274,
+        "offset_x": 29.39,
+        "scale_z": 2.2318,
+        "offset_z": 42.84,
+        "y_range": [
+          -50.7,
+          196.967
+        ]
+      },
+      "default": {
+        "scale_x": 0.9274,
+        "offset_x": 29.39,
+        "scale_z": 2.2318,
+        "offset_z": 42.84,
+        "y_range": [
+          -50.7,
+          196.967
+        ]
+      }
+    }
+  },
+  "fuente": {
+    "place_id": "fuente",
+    "scene_name": "ZoraFountain",
+    "name": "Fuente Zora",
+    "bounds_3d": {
+      "min_x": -2226.483,
+      "max_x": 233.77,
+      "min_y": -331.013,
+      "max_y": 198.661,
+      "min_z": -1748.395,
+      "max_z": 1153.601
+    },
+    "floors": {
+      "nino": {
+        "scale_x": 0.8878,
+        "offset_x": 19.79,
+        "scale_z": 0.8365,
+        "offset_z": 55.72,
+        "y_range": [
+          -331.0,
+          198.0
+        ]
+      },
+      "adulto": {
+        "scale_x": 0.8878,
+        "offset_x": 19.79,
+        "scale_z": 0.8365,
+        "offset_z": 55.72,
+        "y_range": [
+          -331.0,
+          198.0
+        ]
+      },
+      "default": {
+        "scale_x": 0.8878,
+        "offset_x": 19.79,
+        "scale_z": 0.8365,
+        "offset_z": 55.72,
+        "y_range": [
+          -331.0,
+          198.0
+        ]
+      }
+    }
+  },
+  "valle": {
+    "place_id": "valle",
+    "scene_name": "GerudoValley",
+    "name": "Valle Gerudo",
+    "bounds_3d": {
+      "min_x": -427.981,
+      "max_x": 358.229,
+      "min_y": -29.265,
+      "max_y": 177.632,
+      "min_z": -839.798,
+      "max_z": 380.981
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 0.9182,
+        "offset_x": 47.83,
+        "scale_z": 0.816,
+        "offset_z": 65.78,
+        "y_range": [
+          -79.265,
+          227.632
+        ]
+      },
+      "default": {
+        "scale_x": 0.9182,
+        "offset_x": 47.83,
+        "scale_z": 0.816,
+        "offset_z": 65.78,
+        "y_range": [
+          -79.265,
+          227.632
+        ]
+      }
+    }
+  },
+  "fortaleza": {
+    "place_id": "fortaleza",
+    "scene_name": "GerudoFortress",
+    "name": "Fortaleza gerudo",
+    "bounds_3d": {
+      "min_x": -515.28,
+      "max_x": 236.836,
+      "min_y": 0.0,
+      "max_y": 159.32,
+      "min_z": -191.557,
+      "max_z": 346.759
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 0.4399,
+        "offset_x": 14.46,
+        "scale_z": 0.53,
+        "offset_z": 63.22,
+        "y_range": [
+          -50.0,
+          209.32
+        ]
+      },
+      "default": {
+        "scale_x": 0.4399,
+        "offset_x": 14.46,
+        "scale_z": 0.53,
+        "offset_z": 63.22,
+        "y_range": [
+          -50.0,
+          209.32
+        ]
+      }
+    }
+  },
+  "desierto": {
+    "place_id": "desierto",
+    "scene_name": "HountedWasteland",
+    "name": "Desierto encantado",
+    "bounds_3d": {
+      "min_x": -236.915,
+      "max_x": 162.771,
+      "min_y": 69.851,
+      "max_y": 176.518,
+      "min_z": -180.273,
+      "max_z": 87.981
+    },
+    "floors": {
+      "default": {
+        "scale_x": 0.2002,
+        "offset_x": 57.42,
+        "scale_z": 0.2982,
+        "offset_z": 63.76,
+        "y_range": [
+          59.851,
+          186.518
+        ]
+      }
+    }
+  },
+  "coloso": {
+    "place_id": "coloso",
+    "scene_name": "DesertColossus",
+    "name": "Coloso del desierto",
+    "bounds_3d": {
+      "min_x": -292.373,
+      "max_x": 271.714,
+      "min_y": 74.645,
+      "max_y": 178.261,
+      "min_z": -147.5,
+      "max_z": 215.283
+    },
+    "floors": {
+      "principal": {
+        "scale_x": 0.9219,
+        "offset_x": 159.1,
+        "scale_z": 1.4005,
+        "offset_z": 69.18,
+        "y_range": [
+          24.644999999999996,
+          228.261
+        ]
+      },
+      "default": {
+        "scale_x": 0.9219,
+        "offset_x": 159.1,
+        "scale_z": 1.4005,
+        "offset_z": 69.18,
+        "y_range": [
+          24.644999999999996,
+          228.261
+        ]
+      }
+    }
+  }
+}
