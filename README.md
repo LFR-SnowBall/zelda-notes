@@ -15,20 +15,23 @@ Inspired by the Sheikah Purah Pad and high-fidelity cartographic atlases, runnin
 
 No development tools, Python installations, or environment variables are required. Everything is self-contained.
 
-[<img src="https://img.shields.io/badge/DOWNLOAD-ZeldaNotes--v1.0.0--windows.zip%20(12%20MB)-00e5ff?style=for-the-badge&logo=windows&logoColor=000000" alt="Download Standalone Zip" height="42">](https://github.com/LFR-SnowBall/zelda-notes/releases/download/v1.0.0/ZeldaNotes-v1.0.0-windows.zip)
+[<img src="https://img.shields.io/badge/DOWNLOAD-ZeldaNotes.exe%20(13%20KB)-00e5ff?style=for-the-badge&logo=windows&logoColor=000000" alt="Download Standalone EXE" height="42">](https://github.com/LFR-SnowBall/zelda-notes/releases/download/v1.0.0/ZeldaNotes.exe)
+&nbsp;&nbsp;
+[<img src="https://img.shields.io/badge/DOWNLOAD-Full%20Offline%20Zip%20(12%20MB)-7928CA?style=for-the-badge&logo=zip&logoColor=ffffff" alt="Download Full Offline Zip" height="42">](https://github.com/LFR-SnowBall/zelda-notes/releases/download/v1.0.0/ZeldaNotes-v1.0.0-windows.zip)
 
 ### How to Run:
-1. **Download & Extract:**
-   - Grab the pre-built [**ZeldaNotes-v1.0.0-windows.zip**](https://github.com/LFR-SnowBall/zelda-notes/releases/download/v1.0.0/ZeldaNotes-v1.0.0-windows.zip) from [Releases](https://github.com/LFR-SnowBall/zelda-notes/releases).
-   - Extract it to any folder of your choice.
-2. **Launch:**
-   - **On Windows (Recommended):** Double-click **`ZeldaNotes.exe`**.
-     - Launches as an independent desktop app window (GPU-accelerated, borderless Sheikah frame, system tray integration, and zero black terminal windows).
-     - *(Alternative)*: You can also double-click `start-zelda-notes.bat`.
-   - **On Linux / Steam Deck:**
-     ```bash
-     python3 server.py
-     ```
+- **Option A (Instant 1-Click EXE):**
+  1. Download [**`ZeldaNotes.exe`**](https://github.com/LFR-SnowBall/zelda-notes/releases/download/v1.0.0/ZeldaNotes.exe) (13 KB).
+  2. Double-click it. It will automatically initialize everything and launch the companion window right away.
+- **Option B (Full Pre-Packaged Offline Zip):**
+  1. Download [**`ZeldaNotes-v1.0.0-windows.zip`**](https://github.com/LFR-SnowBall/zelda-notes/releases/download/v1.0.0/ZeldaNotes-v1.0.0-windows.zip) (12 MB).
+  2. Extract anywhere and double-click `ZeldaNotes.exe`.
+- **Option C (Linux / Steam Deck):**
+  ```bash
+  git clone https://github.com/LFR-SnowBall/zelda-notes.git
+  cd zelda-notes
+  python3 server.py
+  ```
 3. **Enjoy:**
    - **Main Purah Pad Dashboard:** [http://localhost:8080](http://localhost:8080)
    - **Popout Radar / Second Monitor:** [http://localhost:8080/popout](http://localhost:8080/popout)
